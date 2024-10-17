@@ -4,9 +4,11 @@ import CompanyDemand from '../models/companyDemand.model.js';
 
 const createBidForFarmer=async(req,res)=>{
     try{
+        console.log("ndgghdfddf---");
         const {demandId}=req.params;
-        const {user,status,appliedRate,quantity,duration}=req.body;
+        const {user,appliedRate,quantity,duration}=req.body;
         const farmer=await User.findById(user);
+        
         const companyDemand=await CompanyDemand.findById(demandId);
         if(!farmer){
             return res.status(404).json({message:"Farmer not found"});
@@ -16,8 +18,7 @@ const createBidForFarmer=async(req,res)=>{
         }
        const bid=new Bid({
               user,
-              status,
-              appliedFor: companyId,
+              appliedFor: demandId,
               appliedRate,
               quantity,
               duration  
