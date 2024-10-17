@@ -8,12 +8,12 @@ import FAQ from "../components/FAQ";
 
 const Home = () => (
   <div className="bg-gradient-to-r from-gray-900 via-black to-blue-900 min-h-screen text-white">
-    <Header />
+    
     <Hero />
     <Features />
     <Steps />
     <FAQ/>
-    <Footer />
+    
   </div>
 );
 

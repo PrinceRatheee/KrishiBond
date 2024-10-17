@@ -7,6 +7,7 @@ import { store, persistor } from "./Redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import DetailPage from "./pages/DetailPage";
 import CompanyDemandForm from "./pages/CompanyDemandForm.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/detail" element={<DetailPage />} />
             <Route path="/create" element={< CompanyDemandForm/>} />
+            <Route path="/profile" element={<Dashboard/>}/>
           </Routes>
         </BrowserRouter>
       </Provider>
