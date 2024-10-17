@@ -6,17 +6,6 @@ const farmerSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  email:{
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    required: true,
-    trim: true
-  },
   contact: {
     type: String,
     required: true,
@@ -35,11 +24,11 @@ const farmerSchema = new mongoose.Schema({
   },
   credits: {
     type: Number,
-    default: 100, // Initial credit score for the farmer
+    default: 100, 
   },
   protectionFunds: {
     type: Number,
-    default: 0, // Amount stored in protection funds
+    default: 0, 
   },
   smartContracts: [{
     type: mongoose.Schema.Types.ObjectId,

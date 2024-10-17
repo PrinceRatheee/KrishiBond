@@ -1,5 +1,7 @@
 
-import User from '../models/user.model';
+import User from '../models/user.model.js';
+import Farmer from '../models/farmer.model.js';
+import Company from '../models/company.model.js';
 import jwt from 'jsonwebtoken';
 import bycrypt from 'bcryptjs';
 
@@ -47,4 +49,33 @@ const login = async (req, res) => {
     return res.status(200).json({ token });
 }
 
-export { signup, login };
+const farmerDetails= async (req, res) => {
+    const {name,contact,address,farmSize} = req.body;
+    if (!name || !contact || !address || !farmSize) {
+        return res.status(400).json({ message: "Please fill all the fields" });
+    }
+    const farmer = new Farmer({name,contact,address,farmSize});
+    try {
+        await farmer.save();
+        return res.status(201).json({ message: "Farmer created successfully" });
+    } catch (error) {
+        return error;
+    }
+
+}
+
+const companyDetails=async(req,res)=>{
+    const {name,contact,address,GSTNumber} = req.body;
+    if (!name || !contact || !address || !GSTNumber) {
+        return res.status(400).json({ message: "Please fill all the fields" });
+    }
+    const company = new Company({name,contact,address,GSTNumber});
+    try {
+        await company.save();
+        return res.status(201).json({ message: "Company created successfully" });
+    } catch (error) {
+        return error;
+    }
+}
+    
+export { signup, login,farmerDetails,companyDetails };

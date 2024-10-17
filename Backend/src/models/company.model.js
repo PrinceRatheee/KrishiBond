@@ -17,27 +17,25 @@ const companySchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-//   registrationId: {
-//     type: String,
-//     required: true,
-//     unique: true  // Unique company ID for blockchain
-//   },
+  GSTNumber:{
+    type:String,
+    required:true,
+  },
   credits: {
     type: Number,
     default: 100, 
   },
   demandsListed: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Demand' // Reference to Demand model , baad me bnaenge
+    ref: 'Demand' 
   }],
-//   smartContracts: [{
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'SmartContract' // Reference to smart contract model
-//   }],
+  smartContracts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'SmartContract' 
+  }],
 }, {
   timestamps: true  
 });
 
-// Exporting the model
 const Company = mongoose.model('Company', companySchema);
 export default Company;
