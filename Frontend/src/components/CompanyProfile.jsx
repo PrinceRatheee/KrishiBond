@@ -6,14 +6,15 @@ import ProfileDemandCard from './ProfileDemandCard';
 
 function CompanyProfile() {
   const [demands, setDemands] = useState([]);
-  const[demandId,setDemandId]=useState();
+  // const[demandId,setDemandId]=useState();
   // Fetch company demands from the backend
   useEffect(() => {
     const fetchDemands = async () => {
       try {
         const response = await axiosinstance.get("/api/companydemand/get");
         setDemands(response.data);
-        console.log("Demands:----", response.data);
+       // console.log("Demands:", response.data);
+
       } catch (error) {
         console.error("Error fetching demands:", error);
       }
@@ -31,7 +32,9 @@ function CompanyProfile() {
         {demands.length > 0 ? (
           demands.map((demand,index) => (
             // <DemandCard  key={demand._id} demand={demand} />
-            <ProfileDemandCard key={index} crop={demand.crop} duration={demand.duration} rate={demand.rate}/>
+            <ProfileDemandCard key={index} demandId={demand._id} crop={demand.crop} duration={demand.duration} rate={demand.rate}
+              quantity={demand.quantity}
+            />
           ))
         ) : (
           <p className="text-center text-gray-400 col-span-full">

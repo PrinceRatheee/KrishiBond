@@ -9,6 +9,7 @@ import CompanyDemandForm from "./pages/CompanyDemandForm.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 
 import NotFound from "./pages/Notfound";
+import DemandDetails from "./pages/DemandDetails";
 
 import AllDemands from "./pages/AllDemands";
 import Checkout from "./pages/Checkout.jsx";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/profile" element={<Dashboard />} />
           <Route path="/get" element={<AllDemands />} />
           <Route path="/checkout/:id" element={<Checkout />} />
+          <Route path="/demand/:id" element={<DemandDetails />} />
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound/>}/>

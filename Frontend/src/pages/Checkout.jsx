@@ -7,7 +7,7 @@ const Checkout = () => {
   const location = useLocation();
   const { demand } = location.state; // Extract demand details from state
   const userId = useSelector((state) => state.company.Company.sendUser.id); // Get user ID from Redux
-  console.log('user',userId);  
+//   console.log('user',userId);  
   const [bids, setBids] = useState([]); // Store list of bids
   const [isBidMade, setIsBidMade] = useState(false); // Check if the user already made a bid
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Control popup visibility
