@@ -8,7 +8,6 @@ const CompanyDetails = () => {
   const [gst, setGst] = useState("");
   const handleSignup = (e) => {
     e.preventDefault();
-    // onSubmit({ contact,Address,gst});
   };
 
   return (

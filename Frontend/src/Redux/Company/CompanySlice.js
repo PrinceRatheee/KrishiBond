@@ -4,19 +4,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   Company: null,
-    error: null,
+  error: null,
 };
-
 
 const CompanySlice = createSlice({
   name: "Company",
   initialState,
   reducers: {
-    updateCompany: (state) => {
-        state.Company = action.payload;
-        state.error = null;
-      }
+    updateCompany: (state, action) => {
+      state.Company = action.payload;
+      state.error = null;
+    },
   },
 });
 
+export const { updateCompany } = CompanySlice.actions;
 export default CompanySlice.reducer;

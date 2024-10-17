@@ -8,7 +8,7 @@ const KisanDetails = () => {
   const [Farmsize, setFarmsize] = useState('Company'); 
   const handleSignup = (e) => {
     e.preventDefault();
-    //onSubmit({  Address,Farmsize,contact});
+    
   };
 
 
@@ -60,7 +60,7 @@ const KisanDetails = () => {
           type="submit"
           className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300"
         >
-          Sign Up
+          Submit Details
         </button>
       </form>
     </div>

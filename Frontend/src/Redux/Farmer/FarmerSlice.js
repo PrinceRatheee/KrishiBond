@@ -36,5 +36,10 @@ const initialState = {
 // }
   });
 
+
+  
+export const {
+  updateFarmer,
+} = FarmerSlice.actions;
 export default FarmerSlice.reducer;
 

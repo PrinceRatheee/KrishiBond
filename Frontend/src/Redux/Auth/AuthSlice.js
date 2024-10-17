@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosinstance from "./../../Helper/axiosinstance";
-
 const initialState = {
-  auth: [],
+  isLoggedIn: localStorage.getItem("isLoggedIn") === "true" || false,
+  role: localStorage.getItem("role") || "",
+  data: JSON.parse(localStorage.getItem("data")) || {},
 };
 
 export const AuthSignup = createAsyncThunk(
@@ -41,15 +40,18 @@ const AuthSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
-
   extraReducers: (builder) => {
     builder.addCase(AuthLogin.fulfilled, (state, action) => {
-      console.log("action", action.payload.data.sendUser.role)
-     
-
-      if (action.payload.data.sendUser.role == "industry") {
-        console.log('here')
-      }
+      console.log("action in builder", action.payload);
+      state.isLoggedIn = true;
+      state.role = action.payload?.data.sendUser.role;
+      state.data = action.payload?.data.sendUser;
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("role", action.payload?.data.sendUser);
+      localStorage.setItem(
+        "data",
+        JSON.stringify(action.payload?.data.sendUser)
+      );
     });
   },
 });

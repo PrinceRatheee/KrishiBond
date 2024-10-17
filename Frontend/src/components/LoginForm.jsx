@@ -1,28 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AuthLogin } from './../Redux/Auth/AuthSlice';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AuthLogin } from "./../Redux/Auth/AuthSlice";
+import { useNavigate } from "react-router-dom";
+import { updateFarmer } from "../Redux/Farmer/FarmerSlice";
+import { updateCompany } from "../Redux/Company/CompanySlice";
 const LoginForm = ({ onSwitch }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const resp = await dispatch(AuthLogin({ email, password}));
-    console.log(' resp' , resp);
+    const resp = await dispatch(AuthLogin({ email, password }));
+    console.log(" resp", resp);
 
-    if(resp?.payload?.data?.sendUser?.role === 'industry'){
-      navigate('/');
-    }else if(resp?.payload?.data?.sendUser?.role === 'farmer'){
-      navigate('/');
+    if (resp?.payload?.data?.sendUser?.role === "industry") {
+      navigate("/detail");
+      dispatch(updateCompany(resp.payload.data));
+    } else if (resp?.payload?.data?.sendUser?.role === "farmer") {
+      navigate("/detail");
+      dispatch(updateFarmer(resp.payload.data));
     }
-   
   };
-
-
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">
       <h2 className="text-3xl font-semibold text-white mb-6">Login</h2>
@@ -41,7 +42,10 @@ const navigate = useNavigate();
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-300 text-sm mb-2" htmlFor="password">
+          <label
+            className="block text-gray-300 text-sm mb-2"
+            htmlFor="password"
+          >
             Password
           </label>
           <input
@@ -55,7 +59,6 @@ const navigate = useNavigate();
         </div>
 
         {/* Role Selection Dropdown */}
-       
 
         <button
           type="submit"
@@ -66,7 +69,7 @@ const navigate = useNavigate();
       </form>
 
       <p className="mt-4 text-gray-400">
-        Don’t have an account?{' '}
+        Don’t have an account?{" "}
         <button onClick={onSwitch} className="text-blue-400 hover:underline">
           Sign up here
         </button>
