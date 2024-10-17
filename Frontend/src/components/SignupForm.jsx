@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 "use client"
 
 import { useState } from "react"
@@ -21,7 +22,7 @@ export default function SignupForm({ onSwitch }) {
   }
 
   return (
-    <div className="min-h-screen w-full pt-20 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black p-4">
+    <div className="min-h-screen w-full pt-20 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black p-8">
       <div className="relative w-full">
         {/* Animated stars */}
         <div className="absolute inset-0 overflow-hidden">
