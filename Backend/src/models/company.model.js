@@ -18,7 +18,7 @@ const companySchema = new mongoose.Schema({
     trim: true
   },
   GSTNumber:{
-    type:String,
+    type:Number,
     required:true,
   },
   credits: {
