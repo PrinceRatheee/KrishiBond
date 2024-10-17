@@ -3,44 +3,46 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosinstance from "./../../Helper/axiosinstance";
 
 const initialState = {
-    farmer:[]
-  };
+  farmer: [],
+};
 
+export const FarmerSignup = createAsyncThunk(
+  "/auth/user/signup",
+  async (data, { rejectWithValue }) => {
+    console.log("data in thunk", data);
+    try {
+      const resp = await axiosinstance.post("/api/auth/user/signup", data);
 
-  
- export const FarmerSignup = createAsyncThunk(
-    "/auth/user/signup",
-    async (data, { rejectWithValue }) => {
-      console.log("data in thunk", data);
-      try {
-        const resp = await axiosinstance.post("/api/auth/user/signup", data);
-
-        console.log("resp", resp);
-      } catch (error) {
-        return rejectWithValue(error.response.data);
-      }
+      console.log("resp", resp);
+      return resp?.request?.status;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
-  );
+  }
+);
 
+export const FarmerLogin = createAsyncThunk(
+  "/auth/user/login",
+  async (data, { rejectWithValue }) => {
+    console.log("data in thunk", data);
+    try {
+      const resp = await axiosinstance.post("/api/auth/user/login", data);
 
-  
-
-  export const FarmerLogin = createAsyncThunk(
-    "/auth/user/login",
-    async (data, { rejectWithValue }) => {
-      console.log("data in thunk", data);
-      try {
-        const resp = await axiosinstance.post("/api/auth/user/login", data);
-
-        console.log("resp", resp);
-        return resp.data;
-      } catch (error) {
-        return rejectWithValue(error.response.data);
-      }
+      console.log("resp", resp);
+      return resp.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
-  );
+  }
+);
 
+const FarmerSlice = createSlice({
+  name: "farmer",
+  initialState,
+  reducers: {},
+});
 
+<<<<<<< HEAD
   const FarmerSlice = createSlice({
     name: "farmer",
     initialState,
@@ -64,3 +66,6 @@ const initialState = {
   });
 
 export default FarmerSlice.reducer;
+=======
+export default FarmerSlice.reducer;
+>>>>>>> a959a080316b50dfe6a99929361b8284ae8b9945
