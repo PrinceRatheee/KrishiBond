@@ -37,7 +37,7 @@ const companyDemandSchema = mongoose.Schema({
     }],
     quantityLeft:{
         type: Number,
-        default: quantity
+        required: true
     },
     
    
@@ -46,6 +46,6 @@ const companyDemandSchema = mongoose.Schema({
     timestamps: true
 });
 
-const CompanyDemand = mongoose.model('User', companyDemandSchema);
+const CompanyDemand = mongoose.model('CompanyDemand', companyDemandSchema);
 
 export default CompanyDemand;
