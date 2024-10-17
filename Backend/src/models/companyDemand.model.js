@@ -1,3 +1,4 @@
+import Bid from "./bid.model";
 import mongoose from mongoose;
 
 
@@ -26,12 +27,14 @@ const companyDemandSchema = mongoose.Schema({
         required: true
     },
     
-    bidsApplied:{
-
-    },
-    bidsAccepted:{
-
-    },
+    bidsApplied:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Bid'
+    }],
+    bidsAccepted:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Bid'
+    }],
     quantityLeft:{
         type: Number,
         default: quantity
