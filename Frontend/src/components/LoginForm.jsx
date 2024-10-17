@@ -9,6 +9,7 @@ const LoginForm = ({ onSwitch, onSubmit }) => {
     onSubmit({ email, password });
   };
 
+
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">
       <h2 className="text-3xl font-semibold text-white mb-6">Login</h2>
