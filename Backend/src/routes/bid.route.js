@@ -1,6 +1,5 @@
 import express from "express";
-import { getCompaniesDemands,ListCompanyDemands} from "../controllers/bid.controller.js";
+import { createBidForFarmer} from "../controller/bid.controller.js";
 const router = express.Router();
-router.route("/getdemands").get(getCompaniesDemands);
-router.route("/listdemands").get(ListCompanyDemands);
+router.post("/createBidForFarmer/:companyId", createBidForFarmer);
 export default router;
