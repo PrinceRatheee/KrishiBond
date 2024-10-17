@@ -18,7 +18,12 @@ const userSchema = mongoose.Schema({
         type: String,
         enum: ['farmer', 'industry', 'government'],
         required: true,
-    }
+    },
+    detailsReceived: {
+        type: Boolean,
+        default: false,
+    },
+  
 }, {
     timestamps: true
 });

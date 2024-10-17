@@ -3,6 +3,6 @@ import { farmerDetails,companyDetails ,signup,login} from "../controller/auth.co
 const authRouter = express.Router();
 authRouter.post("/user/signup", signup);
 authRouter.post("/user/login",login );
-authRouter.post("/user/farmer/signup", farmerDetails);
-authRouter.post("/user/Company/signup", companyDetails);
+authRouter.post("/user/login/farmerdetails", farmerDetails);
+authRouter.post("/user/login/companydetails", companyDetails);
 export default authRouter;
