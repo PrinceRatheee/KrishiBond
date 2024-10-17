@@ -1,14 +1,13 @@
-
 import User from '../models/user.model.js';
 import Farmer from '../models/farmer.model.js';
 import Company from '../models/company.model.js';
 import jwt from 'jsonwebtoken';
-import bycrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs'; // Correct import
 
 const signup = async (req, res) => {
     const user = new User(req.body);
 
-    if (!user.name || !user.email || !user.password ||!user.role) {
+    if (!user.name || !user.email || !user.password || !user.role) {
         return res.status(400).json({ message: "Please fill all the fields" });
     }
 
@@ -16,8 +15,10 @@ const signup = async (req, res) => {
     if (userExists) {
         return res.status(400).json({ message: "User already exists" });
     }
- 
-    user.password = await user.hashPassword(user.password);
+
+    // Use bcrypt to hash the password
+    user.password = await bcrypt.hash(user.password, 10); // 10 is the salt rounds
+
     user.save()
         .then(user => {
             return res.status(201).json({ message: "User created successfully" });
@@ -34,14 +35,14 @@ const login = async (req, res) => {
     if (!email || !password) {
         return res.status(400).json({ message: "Please fill all the fields" });
     }
-  
+
     const user = await User.findOne({ email });
     if (!user) {
         return res.status(400).json({ message: "User does not exist" });
     }
 
-    const isMatch = await bycrypt.compare(password, user.password);
-   
+    const isMatch = await bcrypt.compare(password, user.password); // Compare hashed password
+
     if (!isMatch) {
         return res.status(400).json({ message: "Invalid credentials" });
     }
@@ -49,33 +50,32 @@ const login = async (req, res) => {
     return res.status(200).json({ token });
 }
 
-const farmerDetails= async (req, res) => {
-    const {name,contact,address,farmSize} = req.body;
+const farmerDetails = async (req, res) => {
+    const { name, contact, address, farmSize } = req.body;
     if (!name || !contact || !address || !farmSize) {
         return res.status(400).json({ message: "Please fill all the fields" });
     }
-    const farmer = new Farmer({name,contact,address,farmSize});
+    const farmer = new Farmer({ name, contact, address, farmSize });
     try {
         await farmer.save();
         return res.status(201).json({ message: "Farmer created successfully" });
     } catch (error) {
-        return error;
+        return res.status(500).json({ message: "Something went wrong", error });
     }
-
 }
 
-const companyDetails=async(req,res)=>{
-    const {name,contact,address,GSTNumber} = req.body;
+const companyDetails = async (req, res) => {
+    const { name, contact, address, GSTNumber } = req.body;
     if (!name || !contact || !address || !GSTNumber) {
         return res.status(400).json({ message: "Please fill all the fields" });
     }
-    const company = new Company({name,contact,address,GSTNumber});
+    const company = new Company({ name, contact, address, GSTNumber });
     try {
         await company.save();
         return res.status(201).json({ message: "Company created successfully" });
     } catch (error) {
-        return error;
+        return res.status(500).json({ message: "Something went wrong", error });
     }
 }
-    
-export { signup, login,farmerDetails,companyDetails };
+
+export { signup, login, farmerDetails, companyDetails };
