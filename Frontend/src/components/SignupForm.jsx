@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { AuthSignup } from './../Redux/Auth/AuthSlice';
 
 const SignupForm = ({ onSwitch }) => {
+
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,7 +13,6 @@ const SignupForm = ({ onSwitch }) => {
   const dispatch = useDispatch();
   const handleSignup = async (e) => {
     e.preventDefault();
-  
     const resp = await dispatch(AuthSignup({ name, email, password ,role}));
     console.log('signup resp' , resp);
     if(resp?.payload=== 201){
@@ -19,6 +20,8 @@ const SignupForm = ({ onSwitch }) => {
     }
 
   };
+
+  
   
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">

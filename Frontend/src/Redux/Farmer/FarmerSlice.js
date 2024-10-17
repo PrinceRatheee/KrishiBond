@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { createAsyncThunk } from "@reduxjs/toolkit";
-// import axiosinstance from "./../../Helper/axiosinstance";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axiosinstance from "./../../Helper/axiosinstance";
 
 const initialState = {
   farmer: null,
@@ -8,7 +8,18 @@ const initialState = {
 };
 
 
-
+export const FarmerDetail = createAsyncThunk(
+  "user/detail/update",
+  async (data, { rejectWithValue }) => {
+    console.log("data in thunk", data);
+    try {
+      const resp = await axiosinstance.post("api/auth/user/login/farmerdetails", data);
+      console.log("resp", resp);
+    } catch (error) {
+      return rejectWithValue(error.response);
+    }
+  }
+);
 
   const FarmerSlice = createSlice({
     name: "farmer",
