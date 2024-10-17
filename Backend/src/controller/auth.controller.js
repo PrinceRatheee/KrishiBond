@@ -1,76 +1,50 @@
-import Farmer from "../models/farmer.model.js";
-import Company from "./../models/company.model.js";
 
+import User from '../models/user.model';
+import jwt from 'jsonwebtoken';
+import bycrypt from 'bcryptjs';
 
-export const farmerSignUp = async (req, res) => {
-    try {
-      const { name, contact, address, farmSize } = req.body;
-  
-      
-      if (!name || !contact || !address) {
-        return res.status(400).json({
-          message: "Name, contact, and address are required fields",
+const signup = async (req, res) => {
+    const user = new User(req.body);
+
+    if (!user.name || !user.email || !user.password ||!user.role) {
+        return res.status(400).json({ message: "Please fill all the fields" });
+    }
+
+    const userExists = await User.findOne({ email: user.email });
+    if (userExists) {
+        return res.status(400).json({ message: "User already exists" });
+    }
+ 
+    user.password = await user.hashPassword(user.password);
+    user.save()
+        .then(user => {
+            return res.status(201).json({ message: "User created successfully" });
+        })
+        .catch(err => {
+            return res.status(500).json({ message: "Something went wrong" });
         });
-      }
-      const existingFarmer = await Farmer.findOne({ contact });
-      if (existingFarmer) {
-        return res
-          .status(400)
-          .json({ message: "Farmer with this contact already exists" });
-      }
+}
 
-      const newFarmer = new Farmer({
-        name,
-        contact,
-        address,
-        farmSize,  
-      });
-  
-      const savedFarmer = await newFarmer.save();
-  
-      res.status(201).json({
-        message: "Farmer signed up successfully!",
-        farmer: savedFarmer,
-      });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Error signing up farmer", error: error.message });
+
+const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: "Please fill all the fields" });
     }
-  };
   
-export const CompanySignUp = async (req, res) => {
-  try {
-    const { name, contact, address } = req.body;
-
-    if (!name || !contact || !address) {
-      return res.status(400).json({
-        message: "Name, contact, and address are required fields",
-      });
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(400).json({ message: "User does not exist" });
     }
 
-    const existingCompany = await Company.findOne({ contact });
-    if (existingCompany) {
-      return res
-        .status(400)
-        .json({ message: "Company with this contact already exists" });
+    const isMatch = await bycrypt.compare(password, user.password);
+   
+    if (!isMatch) {
+        return res.status(400).json({ message: "Invalid credentials" });
     }
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    return res.status(200).json({ token });
+}
 
-    const newCompany = new Company({
-      name,
-      contact,
-      address,
-    });
-
-    const savedCompany = await newCompany.save();
-
-    res.status(201).json({
-      message: "Company signed up successfully!",
-      company: savedCompany,
-    });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error signing up company", error: error.message });
-  }
-};
+export { signup, login };
