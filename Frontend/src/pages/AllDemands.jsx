@@ -38,11 +38,7 @@ const AllDemands = () => {
         )}
       </div>
       {/*design a button of lighblue color broad width */}
-      <div className="flex items-center justify-center my-4 ">
-      <button className="bg-blue-800 p-4 rounded-xl items-center hover:bg-purple-600" >
-        Checkout
-      </button>
-      </div>
+      
     </div>
   );
 };
