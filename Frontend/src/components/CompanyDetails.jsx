@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import { useEffect } from 'react';
 
 const CompanyDetails = () => {
   const [name, setName] = useState("");
@@ -9,6 +10,8 @@ const CompanyDetails = () => {
   const handleSignup = (e) => {
     e.preventDefault();
   };
+
+  
 
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">

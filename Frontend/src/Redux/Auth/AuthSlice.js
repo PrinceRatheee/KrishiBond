@@ -8,15 +8,12 @@ const initialState = {
   data: JSON.parse(localStorage.getItem("data")) || {},
 };
 
-
-
 export const AuthSignup = createAsyncThunk(
   "/auth/user/signup",
   async (data, { rejectWithValue }) => {
     console.log("data in thunk", data);
     try {
       const resp = await axiosinstance.post("/api/auth/user/signup", data);
-
       console.log("resp", resp);
       return resp?.request?.status;
     } catch (error) {
@@ -24,9 +21,6 @@ export const AuthSignup = createAsyncThunk(
     }
   }
 );
-
-
-
 
 
 export const AuthLogin = createAsyncThunk(
