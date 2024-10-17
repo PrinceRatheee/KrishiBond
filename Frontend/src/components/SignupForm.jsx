@@ -1,5 +1,4 @@
 
-
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { AuthSignup } from "./../Redux/Auth/AuthSlice"
@@ -21,7 +20,7 @@ export default function SignupForm({ onSwitch }) {
   }
 
   return (
-    <div className="min-h-screen w-full pt-20 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black p-4">
+    <div className="min-h-screen w-full pt-20 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black p-8">
       <div className="relative w-full">
         {/* Animated stars */}
         <div className="absolute inset-0 overflow-hidden">

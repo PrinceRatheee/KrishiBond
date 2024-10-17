@@ -11,6 +11,8 @@ import Messages from "./Messages";
 import { FaUser } from "react-icons/fa"; // Importing the user icon
 
 
+
+
 function FarmerDashboard() {
   const [ShowNavbar, setShowNavbar] = useState(true);
   const [activeView, setActiveView] = useState("profile"); // State to track the current view
@@ -18,6 +20,7 @@ function FarmerDashboard() {
   const user = useSelector((state) => state.auth.user); // Assuming user information is in the Redux state
   const ImgUrl = useSelector((state) => state.auth.profileImage); // Assuming there's a profile image in state
   
+
   const navabarOption = [
     { name: "Profile", view: "profile", icon: <FaUser /> }, // Profile icon
     { name: "Messages", view: "chat", icon: <IoChatboxOutline /> }, // Messages icon

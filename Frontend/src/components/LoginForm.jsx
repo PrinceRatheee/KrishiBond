@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 
 import { useState } from "react"
@@ -60,7 +61,8 @@ export default function LoginForm({ onSwitch }) {
 
         <div className="bg-gray-800 bg-opacity-50 p-8 rounded-2xl shadow-xl backdrop-blur-md relative z-10 transform transition duration-500 hover:scale-105 max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-100 mb-6 text-center">Welcome Back</h2>
-          <form onSubmit={handleLogin} className="space-y-6">
+
+          <form  className="space-y-6">
             <div>
               <label className="block text-gray-300 text-sm mb-2" htmlFor="email">
                 Email
@@ -92,7 +94,7 @@ export default function LoginForm({ onSwitch }) {
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-gray-700 to-blue-800 text-gray-100 py-3 rounded-lg font-semibold text-lg hover:from-gray-800 hover:to-blue-900 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
+              onClick={handleLogin} >
               Login
             </button>
           </form>
