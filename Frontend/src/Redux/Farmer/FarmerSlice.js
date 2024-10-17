@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosinstance from "./../../Helper/axiosinstance";
 
-
 const initialState = {
     farmer:[]
   };
+
 
   
  export const FarmerSignup = createAsyncThunk(
@@ -45,6 +45,24 @@ const initialState = {
     name: "farmer",
     initialState,
     reducers: {},
+<<<<<<< HEAD
+=======
+    // // extraReducers: (builder) => {
+    // builder.addCase(FarmerLogin.fulfilled, (state, action) => {
+      
+    //   console.log("action", action.payload);
+    //   state.isLoggedIn = true;
+    //   state.role = action.payload?.data.userRole;
+    //   state.data = action.payload?.data.userDetail;
+    //   localStorage.setItem("isLoggedIn", true);
+    //   localStorage.setItem("role", action.payload?.data.userRole);
+    //   localStorage.setItem(
+    //     "data",
+    //     JSON.stringify(action.payload?.data.userDetail)
+    //   );
+    // });
+// }
+>>>>>>> 7199229e1852c2b07a75977b9e6d0dcc8e245e0e
   });
 
 export default FarmerSlice.reducer;
