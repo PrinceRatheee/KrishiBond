@@ -3,6 +3,7 @@ import axiosinstance from "./../../Helper/axiosinstance";
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") === "true" || false,
   role: localStorage.getItem("role") || "",
+  token: localStorage.getItem("token") || "",
   data: JSON.parse(localStorage.getItem("data")) || {},
 };
 
@@ -46,8 +47,10 @@ const AuthSlice = createSlice({
       state.isLoggedIn = true;
       state.role = action.payload?.data.sendUser.role;
       state.data = action.payload?.data.sendUser;
+      state.token = action.payload?.data.token;
       localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem("role", action.payload?.data.sendUser);
+      localStorage.setItem("role", action.payload?.data.sendUser.role);
+      localStorage.setItem("token", action.payload?.data.token);
       localStorage.setItem(
         "data",
         JSON.stringify(action.payload?.data.sendUser)
