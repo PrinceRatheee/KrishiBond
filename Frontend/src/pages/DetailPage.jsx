@@ -16,7 +16,6 @@ const DetailPage = () => {
 if(isDetails === true){
   navigate('/')
 }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDetails]);
 
   return (

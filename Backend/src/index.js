@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/companydemand", companyDemandRouter);
-app.use("/api/farmerBid",bidRouter);
+app.use("/api/farmerBid", bidRouter);
 app.listen(ServerConfig.PORT, async () => {
   console.log(`Server started on port ${ServerConfig.PORT}...`);
 });

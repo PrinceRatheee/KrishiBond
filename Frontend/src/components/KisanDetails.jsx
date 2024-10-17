@@ -5,6 +5,7 @@ import { FarmerDetail } from './../Redux/Farmer/FarmerSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import {updateFarmer} from '../Redux/Farmer/FarmerSlice'
+import { useNavigate } from 'react-router-dom';
 const KisanDetails = () => {
   const Name = useSelector((state)=>state?.auth?.data?.name)
   const Email = useSelector((state)=> state.auth?.data?.email);
@@ -15,20 +16,21 @@ const KisanDetails = () => {
   const [Address, setAddress] = useState('');
   const [Farmsize, setFarmsize] = useState(0); 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {name,email, contact,address:Address,farmSize:Farmsize}
     const resp = dispatch(FarmerDetail(data));
     console.log('resp on submit' , resp)
     dispatch(updateFarmer(data))
+    navigate('/')
   };
+
   const handleFarmsize =(e)=>{
     console.log(e.target.value)
     setFarmsize(
      parseFloat( e.target.value)) 
   }
-
-  
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">
       <h2 className="text-3xl font-semibold text-white mb-6">Farm Details</h2>
