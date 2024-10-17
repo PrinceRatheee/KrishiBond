@@ -22,7 +22,7 @@ const AllDemands = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-gray-900 via-black to-blue-900 min-h-screen text-white py-16 px-8">
+    <div className="bg-gradient-to-r from-gray-900 via-black to-blue-900 min-h-screen text-white py-16 px-8 flex-col">
       <h2 className="text-4xl font-bold text-cyan-400 text-center mb-12">
        Bid Now and Earn More !!
       </h2>
@@ -36,6 +36,12 @@ const AllDemands = () => {
             No demands found.
           </p>
         )}
+      </div>
+      {/*design a button of lighblue color broad width */}
+      <div className="flex items-center justify-center my-4 ">
+      <button className="bg-blue-800 p-4 rounded-xl items-center hover:bg-purple-600" >
+        Checkout
+      </button>
       </div>
     </div>
   );
