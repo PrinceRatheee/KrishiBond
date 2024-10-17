@@ -7,6 +7,8 @@ const initialState = {
   data: JSON.parse(localStorage.getItem("data")) || {},
 };
 
+
+
 export const AuthSignup = createAsyncThunk(
   "/auth/user/signup",
   async (data, { rejectWithValue }) => {
@@ -21,6 +23,7 @@ export const AuthSignup = createAsyncThunk(
     }
   }
 );
+
 
 export const AuthLogin = createAsyncThunk(
   "/auth/user/login",

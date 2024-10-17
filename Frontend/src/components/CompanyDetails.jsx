@@ -50,7 +50,7 @@ const CompanyDetails = () => {
             className="w-full px-3 py-2 text-gray-900 rounded-lg"
             type="text"
             id="farmsize"
-            placeholder="Enter your Farm-Size"
+            placeholder="Enter your GSTIN"
             value={gst}
             onChange={(e) => setGst(e.target.value)}
           />
