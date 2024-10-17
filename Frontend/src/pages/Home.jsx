@@ -1,9 +1,7 @@
 
-import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
 import Steps from "../components/Steps";
-import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
 
 const Home = () => (

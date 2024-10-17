@@ -1,15 +1,21 @@
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {logout} from "../Redux/Auth/AuthSlice";
+
+
 const Header = () => {
 const navigate = useNavigate();
+const dispatch = useDispatch();
   const handleLogin = ()=>{
     navigate('/auth')
+}
+
+const handleLogout = ()=>{
+  console.log('logout hit')
+   dispatch(logout())
   }
-  const handleLogout = ()=>{
-    console.log("logout")
-  }
-  
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   return (
     <header className="p-6 flex justify-between items-center bg-black bg-opacity-90 text-white shadow-lg">
@@ -21,13 +27,15 @@ const navigate = useNavigate();
       <a href="#" className="text-lg hover:text-cyan-300 transition">Contact</a>
      {isLoggedIn ? (
        <a href="#" className="text-lg hover:text-cyan-300 transition"
-       onSubmit={handleLogout}>Logout</a>
+       onClick={handleLogout}>Logout</a>
      ):
      <a href="#" className="text-lg hover:text-cyan-300 transition"
-     onSubmit={handleLogin}>Login</a>}
+     onClick={handleLogin}>Login</a>}
     </nav>
   </header>
   )
 }
+
+
 
 export default Header;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosinstance from "./../../Helper/axiosinstance";
 const initialState = {
@@ -25,6 +26,9 @@ export const AuthSignup = createAsyncThunk(
 );
 
 
+
+
+
 export const AuthLogin = createAsyncThunk(
   "/auth/user/login",
   async (data, { rejectWithValue }) => {
@@ -43,7 +47,20 @@ export const AuthLogin = createAsyncThunk(
 const AuthSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout:(state,action)=>{
+      console.log('logout')
+      state.isLoggedIn = false;
+      state.role = ""
+      state.data ="";
+      state.token ="";
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("role");
+      localStorage.removeitem("token");
+      localStorage.removeItem("data");
+    }
+  },
+
   extraReducers: (builder) => {
     builder.addCase(AuthLogin.fulfilled, (state, action) => {
       console.log("action in builder", action.payload);
@@ -62,4 +79,5 @@ const AuthSlice = createSlice({
   },
 });
 
+export const {logout} = AuthSlice.actions;
 export default AuthSlice.reducer;
