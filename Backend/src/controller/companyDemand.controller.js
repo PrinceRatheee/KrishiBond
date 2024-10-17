@@ -8,6 +8,7 @@ const getCompaniesDemands = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
+
 const ListCompanyDemands = async (req, res) => {
     const { companyID, crop, duration, quantity, rate } = req.body;
 

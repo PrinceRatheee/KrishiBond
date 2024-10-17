@@ -8,7 +8,6 @@ const initialState = {
   data: JSON.parse(localStorage.getItem("data")) || {},
 };
 
-
 export const AuthSignup = createAsyncThunk(
   "/auth/user/signup",
   async (data, { rejectWithValue }) => {
@@ -75,3 +74,4 @@ const AuthSlice = createSlice({
 
 export const { logout } = AuthSlice.actions;
 export default AuthSlice.reducer;
+
