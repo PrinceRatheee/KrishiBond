@@ -3,15 +3,17 @@ import React,{useState,useEffect} from 'react'
 import DemandCard from "./DemandCard"
 import axiosinstance from "../Helper/axiosinstance";
 import ProfileDemandCard from './ProfileDemandCard';
+import { useSelector } from 'react-redux';
 
 function CompanyProfile() {
   const [demands, setDemands] = useState([]);
   // const[demandId,setDemandId]=useState();
   // Fetch company demands from the backend
+  const id=useSelector((state)=>state.auth.data.id);
   useEffect(() => {
     const fetchDemands = async () => {
       try {
-        const response = await axiosinstance.get("/api/companydemand/get");
+        const response = await axiosinstance.get(`/api/companydemand/get/${id}`);
         setDemands(response.data);
        // console.log("Demands:", response.data);
 

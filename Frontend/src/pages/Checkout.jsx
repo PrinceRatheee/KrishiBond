@@ -86,7 +86,7 @@ const Checkout = () => {
           {demand.crop}
         </h2>
         <p className="text-gray-300 text-center mb-6">
-          Demand by: <span className="font-semibold">{useSelector((state) => state.company.Company.sendUser.name)}</span>
+          Demand by: <span className="font-semibold">{useSelector((state) => state?.company?.Company?.sendUser?.name)}</span>
         </p>
 
         <div className="text-gray-300 mb-8 space-y-2">
