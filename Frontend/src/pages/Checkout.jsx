@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useLocation ,useParams} from "react-router-dom";
 import axiosinstance from "../Helper/axiosinstance";
 import { useSelector } from "react-redux";
+
+
 
 const Checkout = () => {
   const location = useLocation();
@@ -9,6 +11,8 @@ const Checkout = () => {
   console.log(demand)// Extract demand details from state
   const userId = useSelector((state) => state.auth.data.id); // Get user ID from Redux
   const {id} = useParams();
+
+  const [company, setcompany] = useState("");
 
   console.log("id", userId);
   //   console.log('user',userId);
@@ -36,6 +40,9 @@ const Checkout = () => {
         `/api/farmerBid/getBidsByDemandId/${demand._id}`
       );
       setBids(response.data);
+      const companydetail = await axiosinstance.get(`/api/auth/user/getCompanydetails/${id}`);
+console.log(companydetail);
+setcompany(companydetail.payload);
       console.log("resp data", response.data);
       // Check if the user already made a bid
       const userBid = response.data.find((bid) => bid.user === userId);
