@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { FarmerSignup } from './../Redux/Farmer/FarmerSlice';
 import { useDispatch } from "react-redux";
+import { AuthSignup } from './../Redux/Auth/AuthSlice';
 
 const SignupForm = ({ onSwitch }) => {
   const [name, setName] = useState('');
@@ -12,7 +12,7 @@ const SignupForm = ({ onSwitch }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
   
-    const resp = await dispatch(FarmerSignup({ name, email, password ,role}));
+    const resp = await dispatch(AuthSignup({ name, email, password ,role}));
     console.log('signup resp' , resp);
     if(resp?.payload=== 201){
      onSwitch();
