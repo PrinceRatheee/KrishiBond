@@ -78,4 +78,4 @@ const companyDetails=async(req,res)=>{
     }
 }
     
-export { signup, login };
+export { signup, login,farmerDetails,companyDetails };
