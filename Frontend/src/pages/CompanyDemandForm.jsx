@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import axiosinstance from "../Helper/axiosinstance";
 const CompanyDemandForm = () => {

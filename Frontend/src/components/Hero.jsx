@@ -1,7 +1,7 @@
 import React from "react";
 
 const Hero = () => (
-  <section className="flex flex-col items-center justify-center text-center py-32">
+  <section className="flex flex-col items-center justify-center text-center py-32 h-[78vh]">
     <h2 className="text-5xl font-bold mb-4">
       Revolutionizing Agriculture with Blockchain
     </h2>
