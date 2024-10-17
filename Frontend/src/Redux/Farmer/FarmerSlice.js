@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axiosinstance from "./../../Helper/axiosinstance";
 
 const initialState = {
-  farmer: [],
+  farmer: null,
+  error:null,
 };
 
 
@@ -12,7 +13,11 @@ const initialState = {
   const FarmerSlice = createSlice({
     name: "farmer",
     initialState,
-    reducers: {},
+    reducers: {
+        updateFarmer: (state, action) => {
+        state.farmer= action.payload;
+        }
+    },
 
     // // extraReducers: (builder) => {
     // builder.addCase(FarmerLogin.fulfilled, (state, action) => {

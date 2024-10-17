@@ -3,14 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axiosinstance from "./../../Helper/axiosinstance";
 
 const initialState = {
-  Company: [],
+  Company: null,
+    error: null,
 };
 
 
 const CompanySlice = createSlice({
   name: "Company",
   initialState,
-  reducers: {},
+  reducers: {
+    updateCompany: (state) => {
+        state.Company = action.payload;
+        state.error = null;
+      }
+  },
 });
 
 export default CompanySlice.reducer;
