@@ -36,13 +36,7 @@ export const FarmerLogin = createAsyncThunk(
   }
 );
 
-const FarmerSlice = createSlice({
-  name: "farmer",
-  initialState,
-  reducers: {},
-});
 
-<<<<<<< HEAD
   const FarmerSlice = createSlice({
     name: "farmer",
     initialState,
@@ -66,6 +60,4 @@ const FarmerSlice = createSlice({
   });
 
 export default FarmerSlice.reducer;
-=======
-export default FarmerSlice.reducer;
->>>>>>> a959a080316b50dfe6a99929361b8284ae8b9945
+
