@@ -102,6 +102,7 @@ setcompany(companydetail.payload);
           <span className="font-semibold">
             {}
           </span>
+          
         </p>
         <div className="text-gray-300 mb-8 space-y-2">
           <p>
