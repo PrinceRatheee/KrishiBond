@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-binary-expression */
+/* eslint-disable no-unused-vars */
 import React, { Suspense, useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { IoChatboxOutline } from "react-icons/io5"; // Correcting to use IoChatboxOutline icon

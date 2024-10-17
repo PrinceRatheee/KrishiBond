@@ -33,7 +33,7 @@ export default function KisanDetails() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black pt-4 ">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black pt-4  p-8">
       <div className="relative w-full">
         {/* Animated stars */}
         <div className="absolute inset-0 overflow-hidden">

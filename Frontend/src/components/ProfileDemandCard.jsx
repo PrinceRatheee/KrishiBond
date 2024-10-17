@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 
 function ProfileDemandCard({crop,duration,quantity,rate,cropImage}) {
     // const { cropImage, crop, duration, quantity, rate, _id } = demand;

@@ -32,7 +32,7 @@ export default function CompanyDetails() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black p-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-black p-4">
       <div className="relative w-full">
         {/* Animated stars */}
         <div className="absolute inset-0 overflow-hidden">
@@ -52,7 +52,7 @@ export default function CompanyDetails() {
         </div>
 
         {/* Floating company icon */}
-        <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-40 h-40 animate-float">
+        {/* <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-40 h-40 animate-float">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 21H21" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M5 21V7L13 3V21" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -61,7 +61,7 @@ export default function CompanyDetails() {
             <path d="M9 13V13.01" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M9 17V17.01" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </div>
+        </div> */}
 
         <div className="bg-gray-800 bg-opacity-50 p-8 rounded-2xl shadow-xl backdrop-blur-md relative z-10 transform transition duration-500 hover:scale-105 max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-100 mb-6 text-center">Company Details</h2>
