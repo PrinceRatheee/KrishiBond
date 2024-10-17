@@ -98,14 +98,14 @@ const companyDetails=async(req,res)=>{
     }
 }
 const getCompanydetails=async(req,res)=>{
-    const {email}=req.body;
-    const company=await Company.findOne({email:email}); 
+    const {companyid}=req.params();
+    const company=await Company.findById(companyid); 
     return res.status(200).json({company});
 }
 
 const getFarmerdetails=async(req,res)=>{
-    const {email}=req.body;
-    const farmer=await Farmer.findOne({email:email}); 
+    const {farmerid}=req.params();
+    const farmer=await Farmer.findById(farmerid); 
     return res.status(200).json({farmer});
 }   
 
