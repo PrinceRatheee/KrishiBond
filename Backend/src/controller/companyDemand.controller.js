@@ -46,14 +46,16 @@ const approvedFarmerBids=async(req,res)=>{
             const companyDemand=await CompanyDemand.findById(companyId);
             companyDemand.bidsAccepted.push(bidId);
             companyDemand.quantityLeft-=bid.quantity;
+            await bid.save();
+        await companyDemand.save();
         }else{
             bid.status='rejected';
             const companyId=bid.appliedFor;
             const companyDemand=await CompanyDemand.findById(companyId);
             companyDemand.bidsApplied.pull(bidId);
-        }
-        await bid.save();
+            await bid.save();
         await companyDemand.save();
+        }
         res.status(200).json(bid);
     }catch(error){
         res.status(404).json({message:error.message});
