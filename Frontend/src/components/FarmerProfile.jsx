@@ -1,15 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import axiosinstance from './../Helper/axiosinstance';
+import { useSelector } from 'react-redux';
+import BidCard from './BidsCard';
 
 function FarmerProfile() {
+
+  const userID = useSelector((state)=>state.auth.data.id)
   const [bids, setBids] = useState([]);
   const[demandId,setDemandId]=useState();
   // Fetch company demands from the backend
   useEffect(() => {
     const fetchBids = async () => {
       try {
-        const response = await axiosinstance.get(`/api/companydemand/get`);
+        const response = await axiosinstance.get(`/api/farmerBid/getBidsByUserId/${userID}`);
         setBids(response.data);
         console.log("Bids fetched in farmer profile:", response.data);
       } catch (error) {
@@ -27,16 +31,20 @@ function FarmerProfile() {
    Your Bids !!
   </h2>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {/* {demands.length > 0 ? (
-      demands.map((demand,index) => (
-        // <DemandCard  key={demand._id} demand={demand} />
-       // <ProfileDemandCard key={index} crop={demand.crop} duration={demand.duration} rate={demand.rate}/>
+    {bids.length > 0 ? (
+      bids.map((bid,index) => (
+
+        <BidCard key={index} duration={bid.duration} quantity={bid.quantity} 
+        appliedRate={
+          bid.appliedRate
+          } status={bid.status}
+        />
       ))
     ) : (
       <p className="text-center text-gray-400 col-span-full">
         No demands found.
       </p>
-    )} */}
+    )}
   </div>
   {/*design a button of lighblue color broad width */}
   
