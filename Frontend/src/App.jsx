@@ -24,15 +24,7 @@ function App() {
         <Route path="/profile" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>  
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/detail" element={<DetailPage />} />
-            <Route path="/create" element={< CompanyDemandForm/>} />
-            <Route path="/profile" element={<Dashboard/>}/>
-            <Route path="/about" element={<About/>}/>
-            <Route path="/get" element={<AllDemands/>}/>
-          </Routes>
+         
   
     </>
   );
