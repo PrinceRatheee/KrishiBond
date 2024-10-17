@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const faqData = [
   {
-    question: "What is KisanBond?",
+    question: "What is KrishiBond?",
     answer:
-      "KisanBond is a blockchain-based platform that connects farmers directly with buyers, enabling transparent, secure, and fair transactions.",
+      "KrishiBond is a blockchain-based platform that connects farmers directly with buyers, enabling transparent, secure, and fair transactions.",
   },
   {
     question: "How do farmers get paid?",
@@ -12,9 +12,9 @@ const faqData = [
       "Payments are managed through smart contracts. Funds are held in escrow and released automatically after the buyer confirms delivery.",
   },
   {
-    question: "Is there any fee for using KisanBond?",
+    question: "Is there any fee for using KrishiBond?",
     answer:
-      "KisanBond charges a small platform maintenance fee. However, it eliminates middleman costs, ensuring farmers get fair prices.",
+      "KrishiBond charges a small platform maintenance fee. However, it eliminates middleman costs, ensuring farmers get fair prices.",
   },
   {
     question: "What crops can I sell on the platform?",
@@ -22,9 +22,9 @@ const faqData = [
       "Farmers can list all legally permitted crops. The platform also offers tools to track market demands and competitive prices.",
   },
   {
-    question: "Is KisanBond available in my region?",
+    question: "Is KrishiBond available in my region?",
     answer:
-      "KisanBond is expanding across regions. Check the marketplace for current availability in your area.",
+      "KrishiBond is expanding across regions. Check the marketplace for current availability in your area.",
   },
 ];
 

@@ -45,7 +45,7 @@ const Header = () => {
       >
         <Leaf className="w-6 h-6 text-blue-400" />
         <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-gray-300">
-          Kisan Bond
+          Krishi Bond
         </h1>
       </motion.div>
       <nav className="flex items-center space-x-4">
