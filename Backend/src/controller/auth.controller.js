@@ -1,7 +1,7 @@
 
-import User from '../models/user.model';
-import Farmer from '../models/farmer.model';
-import Company from '../models/company.model';
+import User from '../models/user.model.js';
+import Farmer from '../models/farmer.model.js';
+import Company from '../models/company.model.js';
 import jwt from 'jsonwebtoken';
 import bycrypt from 'bcryptjs';
 
