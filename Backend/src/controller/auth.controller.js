@@ -46,7 +46,17 @@ const login = async (req, res) => {
         return res.status(400).json({ message: "Invalid credentials" });
     }
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-    return res.status(200).json({ token });
+    const sendUser={
+        id:user._id,
+        name: user.name,
+        email:user.email,
+        role:user.role
+    }
+    const data={
+        token,
+        sendUser
+    }
+    return res.status(200).json({ data });
 }
 
 const farmerDetails= async (req, res) => {
