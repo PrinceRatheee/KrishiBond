@@ -33,4 +33,13 @@ const createBidForFarmer=async(req,res)=>{
         res.status(500).json({message:error.message});
     }
 }
-export  {createBidForFarmer};
+const getBidsByDemandId=async(req,res)=>{
+    try{
+        const {demandId}=req.params;
+        const bids=await Bid.find({appliedFor:demandId});
+        res.status(200).json(bids);
+    }catch(error){
+        res.status(500).json({message:error.message});
+    }
+}
+export  {createBidForFarmer,getBidsByDemandId};
