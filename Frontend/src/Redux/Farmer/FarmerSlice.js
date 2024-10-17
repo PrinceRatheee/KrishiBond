@@ -3,50 +3,45 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosinstance from "./../../Helper/axiosinstance";
 
 const initialState = {
-    farmer:[]
-  };
+  farmer: [],
+};
 
+export const FarmerSignup = createAsyncThunk(
+  "/auth/user/signup",
+  async (data, { rejectWithValue }) => {
+    console.log("data in thunk", data);
+    try {
+      const resp = await axiosinstance.post("/api/auth/user/signup", data);
 
-  
- export const FarmerSignup = createAsyncThunk(
-    "/auth/user/signup",
-    async (data, { rejectWithValue }) => {
-      console.log("data in thunk", data);
-      try {
-        const resp = await axiosinstance.post("/api/auth/user/signup", data);
-
-        console.log("resp", resp);
-      } catch (error) {
-        return rejectWithValue(error.response.data);
-      }
+      console.log("resp", resp);
+      return resp?.request?.status;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
-  );
+  }
+);
 
+export const FarmerLogin = createAsyncThunk(
+  "/auth/user/login",
+  async (data, { rejectWithValue }) => {
+    console.log("data in thunk", data);
+    try {
+      const resp = await axiosinstance.post("/api/auth/user/login", data);
 
-  
-
-  export const FarmerLogin = createAsyncThunk(
-    "/auth/user/login",
-    async (data, { rejectWithValue }) => {
-      console.log("data in thunk", data);
-      try {
-        const resp = await axiosinstance.post("/api/auth/user/login", data);
-
-        console.log("resp", resp);
-        return resp.data;
-      } catch (error) {
-        return rejectWithValue(error.response.data);
-      }
+      console.log("resp", resp);
+      return resp.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
-  );
+  }
+);
 
 
   const FarmerSlice = createSlice({
     name: "farmer",
     initialState,
     reducers: {},
-<<<<<<< HEAD
-=======
+
     // // extraReducers: (builder) => {
     // builder.addCase(FarmerLogin.fulfilled, (state, action) => {
       
@@ -62,7 +57,7 @@ const initialState = {
     //   );
     // });
 // }
->>>>>>> 7199229e1852c2b07a75977b9e6d0dcc8e245e0e
   });
 
 export default FarmerSlice.reducer;
+

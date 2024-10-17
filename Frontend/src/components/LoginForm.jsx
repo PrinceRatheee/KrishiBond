@@ -1,12 +1,25 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-
-const LoginForm = ({ onSwitch, onSubmit }) => {
+import { useDispatch } from 'react-redux';
+import {FarmerLogin} from '../Redux/Farmer/FarmerSlice'
+import { useNavigate } from 'react-router-dom';
+const LoginForm = ({ onSwitch }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleLogin = (e) => {
+  const dispatch = useDispatch();
+const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    const resp = await dispatch(FarmerLogin({ email, password}));
+    console.log(' resp' , resp);
+
+    if(resp?.payload?.data?.sendUser?.role === 'industry'){
+      navigate('/');
+    }else if(resp?.payload?.data?.sendUser?.role === 'farmer'){
+      navigate('/');
+    }
+   
   };
 
 

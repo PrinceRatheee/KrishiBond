@@ -4,10 +4,10 @@ const KisanDetails = ({ onSwitch, onSubmit }) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [Address, setAddress] = useState('');
-  const [Farmsize, setFarmsize] = useState('Company'); 
+  const [gst, setGst] = useState(''); 
   const handleSignup = (e) => {
     e.preventDefault();
-    onSubmit({  Address,Farmsize,contact});
+    onSubmit({ contact,Address,gst});
   };
 
   return (
@@ -42,15 +42,15 @@ const KisanDetails = ({ onSwitch, onSubmit }) => {
         </div>
         <div className="mb-6">
           <label className="block text-gray-300 text-sm mb-2" htmlFor="role">
-           Farm Size
+           GSTIN.
           </label>
           <input
             className="w-full px-3 py-2 text-gray-900 rounded-lg"
-            type="number"
+            type="text"
             id="farmsize"
             placeholder="Enter your Farm-Size"
-            value={Address}
-            onChange={(e) => setFarmsize(e.target.value)}
+            value={gst}
+            onChange={(e) => setGst(e.target.value)}
           />
         </div>
 
@@ -58,7 +58,7 @@ const KisanDetails = ({ onSwitch, onSubmit }) => {
           type="submit"
           className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300"
         >
-          Sign Up
+         Submit Details
         </button>
       </form>
     </div>

@@ -26,8 +26,7 @@ const userSchema = mongoose.Schema({
     },
     bids:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Bid'
-
+        ref: "Bid"
     }]
   
 }, {
