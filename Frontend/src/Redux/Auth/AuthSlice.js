@@ -8,6 +8,7 @@ const initialState = {
   data: JSON.parse(localStorage.getItem("data")) || {},
 };
 
+
 export const AuthSignup = createAsyncThunk(
   "/auth/user/signup",
   async (data, { rejectWithValue }) => {
@@ -21,7 +22,6 @@ export const AuthSignup = createAsyncThunk(
     }
   }
 );
-
 
 export const AuthLogin = createAsyncThunk(
   "/auth/user/login",
@@ -42,17 +42,17 @@ const AuthSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout:(state,action)=>{
-      console.log('logout')
+    logout: (state, action) => {
+      console.log("logout");
       state.isLoggedIn = false;
-      state.role = ""
-      state.data ="";
-      state.token ="";
+      state.role = "";
+      state.data = "";
+      state.token = "";
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("role");
-      localStorage.removeitem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("data");
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -73,5 +73,5 @@ const AuthSlice = createSlice({
   },
 });
 
-export const {logout} = AuthSlice.actions;
+export const { logout } = AuthSlice.actions;
 export default AuthSlice.reducer;
