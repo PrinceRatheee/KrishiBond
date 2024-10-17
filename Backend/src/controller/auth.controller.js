@@ -59,6 +59,7 @@ const farmerDetails= async (req, res) => {
         await farmer.save();
         const user =await User.findOne({email:email});
         user.detailsReceived=true;
+        await user.save();
         return res.status(201).json({ message: "Farmer created successfully" });
     } catch (error) {
         return res.status(500).json({ message: "Something went wrong", error });
@@ -75,6 +76,7 @@ const companyDetails=async(req,res)=>{
         await company.save();
         const user =await User.findOne({email:email});
         user.detailsReceived=true;
+        await user.save();
         return res.status(201).json({ message: "Company created successfully" });
     } catch (error) {
         return res.status(500).json({ message: "Something went wrong", error });

@@ -7,7 +7,7 @@ const farmerSchema = new mongoose.Schema({
     trim: true
   },
   contact: {
-    type: String,
+    type: Number,
     required: true,
     unique: true,  
     trim: true
