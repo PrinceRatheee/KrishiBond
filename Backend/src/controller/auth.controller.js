@@ -97,5 +97,16 @@ const companyDetails=async(req,res)=>{
         return res.status(500).json({ message: "Something went wrong", error });
     }
 }
+const getCompanydetails=async(req,res)=>{
+    const {email}=req.body;
+    const company=await Company.findOne({email:email}); 
+    return res.status(200).json({company});
+}
 
-export { signup, login, farmerDetails, companyDetails };
+const getFarmerdetails=async(req,res)=>{
+    const {email}=req.body;
+    const farmer=await Farmer.findOne({email:email}); 
+    return res.status(200).json({farmer});
+}   
+
+export { signup, login, farmerDetails, companyDetails,getCompanydetails,getFarmerdetails };
