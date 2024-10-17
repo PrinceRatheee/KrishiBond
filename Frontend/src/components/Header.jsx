@@ -1,41 +1,93 @@
+'use client'
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {logout} from "../Redux/Auth/AuthSlice";
-
+import { logout } from "../Redux/Auth/AuthSlice";
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Leaf } from 'lucide-react';
 
 const Header = () => {
-const navigate = useNavigate();
-const dispatch = useDispatch();
-  const handleLogin = ()=>{
-    navigate('/auth')
-}
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [hoveredItem, setHoveredItem] = useState(null);
 
-const handleLogout = ()=>{
-  console.log('logout hit')
-   dispatch(logout())
+  const handleLogin = () => {
+    navigate('/auth')
   }
+
+  const handleLogout = () => {
+    console.log('logout hit')
+    dispatch(logout())
+  }
+
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+  const navItems = [
+    { name: 'Home', href: '#' },
+    { name: 'About', href: '#' },
+    { name: 'Marketplace', href: '#' },
+    { name: 'Contact', href: '#' },
+  ];
+
   return (
-    <header className="p-6 flex justify-between items-center bg-black bg-opacity-90 text-white shadow-lg">
-    <h1 className="text-4xl font-extrabold text-cyan-400">Kisan Bond</h1>
-    <nav className="space-x-6">
-      <a href="#" className="text-lg hover:text-cyan-300 transition">Home</a>
-      <a href="#" className="text-lg hover:text-cyan-300 transition">About</a>
-      <a href="#" className="text-lg hover:text-cyan-300 transition">Marketplace</a>
-      <a href="#" className="text-lg hover:text-cyan-300 transition">Contact</a>
-     {isLoggedIn ? (
-       <a href="#" className="text-lg hover:text-cyan-300 transition"
-       onClick={handleLogout}>Logout</a>
-     ):
-     <a href="#" className="text-lg hover:text-cyan-300 transition"
-     onClick={handleLogin}>Login</a>}
-    </nav>
-  </header>
+    <motion.header 
+      className="py-3 px-6 flex justify-between items-center bg-gradient-to-r from-gray-900 via-blue-900 to-black text-gray-200 shadow-md"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <motion.div 
+        className="flex items-center space-x-2"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+      >
+        <Leaf className="w-6 h-6 text-blue-400" />
+        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-gray-300">
+          Kisan Bond
+        </h1>
+      </motion.div>
+      <nav className="flex items-center space-x-4">
+        {navItems.map((item, index) => (
+          <motion.a
+            key={item.name}
+            href={item.href}
+            className="text-sm relative py-1"
+            onHoverStart={() => setHoveredItem(index)}
+            onHoverEnd={() => setHoveredItem(null)}
+          >
+            {item.name}
+            {hoveredItem === index && (
+              <motion.span
+                className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400"
+                layoutId="underline"
+              />
+            )}
+          </motion.a>
+        ))}
+        {isLoggedIn ? (
+          <motion.button
+            className="text-sm bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-md transition-colors duration-300"
+            onClick={handleLogout}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Logout
+          </motion.button>
+        ) : (
+          <motion.button
+            className="text-sm bg-blue-700 hover:bg-blue-600 px-3 py-1 rounded-md transition-colors duration-300"
+            onClick={handleLogin}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Login
+          </motion.button>
+        )}
+      </nav>
+    </motion.header>
   )
 }
-
-
 
 export default Header;
