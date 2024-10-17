@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom"; 
 
 const DemandCard = ({ demand }) => {
-  const { cropImage, crop, duration, quantity, rate, _id } = demand; // Assuming demand has _id
+  const { cropImage, crop, duration, quantity, rate, _id } = demand; 
   const navigate = useNavigate(); // Hook for programmatic navigation
 
   // Handle navigation to the checkout page
   const handleCheckout = () => {
-    navigate(`/checkout/${_id}`, { state: { demand } }); // Pass demand details to the new page
+    navigate(`/checkout/${_id}`, { state: { demand } }); 
   };
 
   return (
