@@ -28,7 +28,6 @@ const signup = async (req, res) => {
         });
 }
 
-
 const login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -50,28 +49,32 @@ const login = async (req, res) => {
     return res.status(200).json({ token });
 }
 
-const farmerDetails = async (req, res) => {
-    const { name, contact, address, farmSize } = req.body;
-    if (!name || !contact || !address || !farmSize) {
+const farmerDetails= async (req, res) => {
+    const {name,contact,address,farmSize,email} = req.body;
+    if (!name || !contact || !address || !farmSize||!email) {
         return res.status(400).json({ message: "Please fill all the fields" });
     }
-    const farmer = new Farmer({ name, contact, address, farmSize });
+    const farmer = new Farmer({name,contact,address,farmSize,email});
     try {
         await farmer.save();
+        const user =await User.findOne({email:email});
+        user.detailsReceived=true;
         return res.status(201).json({ message: "Farmer created successfully" });
     } catch (error) {
         return res.status(500).json({ message: "Something went wrong", error });
     }
 }
 
-const companyDetails = async (req, res) => {
-    const { name, contact, address, GSTNumber } = req.body;
-    if (!name || !contact || !address || !GSTNumber) {
+const companyDetails=async(req,res)=>{
+    const {name,contact,address,GSTNumber,email} = req.body;
+    if (!name || !contact || !address || !GSTNumber||!email) {
         return res.status(400).json({ message: "Please fill all the fields" });
     }
-    const company = new Company({ name, contact, address, GSTNumber });
+    const company = new Company({name,contact,address,GSTNumber,email});
     try {
         await company.save();
+        const user =await User.findOne({email:email});
+        user.detailsReceived=true;
         return res.status(201).json({ message: "Company created successfully" });
     } catch (error) {
         return res.status(500).json({ message: "Something went wrong", error });
