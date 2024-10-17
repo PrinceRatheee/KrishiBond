@@ -3,22 +3,23 @@ import { useState } from 'react';
 import { FarmerSignup } from './../Redux/Farmer/FarmerSlice';
 import { useDispatch } from "react-redux";
 
-
 const SignupForm = ({ onSwitch }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('Company'); 
+  const [role, setRole] = useState('industry'); 
   const dispatch = useDispatch();
   const handleSignup = async (e) => {
     e.preventDefault();
   
     const resp = await dispatch(FarmerSignup({ name, email, password ,role}));
-    console.log(resp);
+    console.log('signup resp' , resp);
+    if(resp?.payload=== 201){
+     onSwitch();
+    }
 
   };
   
-
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">
       <h2 className="text-3xl font-semibold text-white mb-6">Sign Up</h2>
@@ -59,8 +60,8 @@ const SignupForm = ({ onSwitch }) => {
             value={role}
             onChange={(e) => setRole(e.target.value)}
           >
-            <option value="Company">Company</option>
-            <option value="Farmer">Farmer</option>
+            <option value="industry">industry</option>
+            <option value="farmer">farmer</option>
           </select>
         </div>
         <div className="mb-6">
