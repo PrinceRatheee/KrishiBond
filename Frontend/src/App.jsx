@@ -27,8 +27,8 @@ function App() {
         <Route path="/create" element={<CompanyDemandForm />} />
         <Route path="/profile" element={<Dashboard />} />
         <Route path="/get" element={<AllDemands />} />
-        <Route path="/about" element={<About />} />
         </Route>
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   );

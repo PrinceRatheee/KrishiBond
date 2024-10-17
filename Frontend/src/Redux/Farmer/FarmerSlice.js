@@ -21,6 +21,8 @@ export const FarmerDetail = createAsyncThunk(
   }
 );
 
+
+
   const FarmerSlice = createSlice({
     name: "farmer",
     initialState,
