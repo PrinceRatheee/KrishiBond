@@ -1,43 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axiosinstance from "../Helper/axiosinstance";
-import ProfileDemandCard from "../components/ProfileDemandCard"; // Import card to reuse below
+import ProfileDemandCard from "../components/ProfileDemandCard"; // Import card to reuse for bid display
 
 const DemandDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {id}= useParams();
-  
- 
+  const { id } = useParams(); // Get demand ID from the URL
 
-  const { crop, duration, quantity, rate, cropImage} = location.state; // Get demand details from state
-  const [allDemands, setAllDemands] = useState([]); // Store all demands
+  const { crop, duration, quantity, rate, cropImage } = location.state; // Get demand details from state
+  const [bids, setBids] = useState([]); // Store all bids
 
-  // Fetch all demands from the backend
-  const fetchAllDemands = async () => {
+  // Fetch all bids on the same demand from the backend
+  const fetchAllBids = async () => {
     try {
-       
       const response = await axiosinstance.get(`/api/farmerBid/getBidsByDemandId/${id}`);
-      setAllDemands(response.data);
-      console.log()
-
+      setBids(response.data);
     } catch (error) {
-      console.error("Error fetching demands:", error);
+      console.error("Error fetching bids:", error);
     }
   };
 
   useEffect(() => {
- fetchAllDemands(); // Fetch all demands when the page loads
+    fetchAllBids(); // Fetch all bids when the page loads
   }, []);
 
   const handleAccept = () => {
     console.log("Accepted");
-    // Add logic for accepting the demand (e.g., backend call)
+    // Add logic for accepting a bid (e.g., backend call)
   };
 
   const handleReject = () => {
     console.log("Rejected");
-    // Add logic for rejecting the demand (e.g., backend call)
+    // Add logic for rejecting a bid (e.g., backend call)
   };
 
   const handleContact = () => {
@@ -87,24 +82,30 @@ const DemandDetails = () => {
         </div>
       </div>
 
-      {/* Other Demands */}
+      {/* Other Bids Section */}
       <div className="max-w-3xl mx-auto mt-12">
-        <h3 className="text-xl font-semibold text-cyan-400 mb-6">Other Demands</h3>
+        <h3 className="text-xl font-semibold text-cyan-400 mb-6">Other Bids on This Demand</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {allDemands.length > 0 ? (
-            allDemands.map((demand) => (
-              <ProfileDemandCard
-                key={demand._id}
-                crop={demand.crop}
-                duration={demand.duration}
-                quantity={demand.quantity}
-                rate={demand.rate}
-                cropImage={demand.cropImage}
-                demandId={demand._id}
-              />
+          {bids.length > 0 ? (
+            bids.map((bid) => (
+              <div key={bid._id} className="bg-gray-700 p-4 rounded-lg shadow-md">
+                <h4 className="text-2xl text-cyan-400 mb-2">Bid from Farmer</h4>
+                <p className="text-gray-300">
+                  <span className="font-semibold">Bid Rate:</span> ₹{bid.appliedRate}
+                </p>
+                <p className="text-gray-300">
+                  <span className="font-semibold">Quantity:</span> {bid.quantity} tons
+                </p>
+                <p className="text-gray-300">
+                  <span className="font-semibold">Duration:</span> {bid.duration}
+                </p>
+                <p className="text-gray-400">
+                  <span className="font-semibold">Submitted On:</span> {new Date(bid.createdAt).toLocaleString()}
+                </p>
+              </div>
             ))
           ) : (
-            <p className="text-gray-400">No other demands available.</p>
+            <p className="text-gray-400">No bids available for this demand.</p>
           )}
         </div>
       </div>
