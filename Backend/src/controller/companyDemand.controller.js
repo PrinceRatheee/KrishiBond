@@ -7,18 +7,19 @@ const getCompaniesDemands = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-const ListCompanyDemands=async(req,res)=>{
-    const {companyID,crop,duration,quantity,rate}=req.body;
+const ListCompanyDemands = async (req, res) => {
+    const { companyID, crop, duration, quantity, rate } = req.body;
 
-    if(!companyID||!crop||!duration||!quantity||!rate){
-        return res.status(400).json({message:"All fields are required"});
+    if (!companyID || !crop || !duration || !quantity || !rate) {
+        return res.status(400).json({ message: "All fields are required" });
     }
-    const newCompanyDemand=new CompanyDemand({companyID,crop,duration,quantity,rate});
-    try{
+    const quantityLeft=quantity;
+    const newCompanyDemand = new CompanyDemand({ companyID, crop, duration, quantity, rate ,quantityLeft});
+    try {
         await newCompanyDemand.save();
         res.status(201).json(newCompanyDemand);
-    }catch{
-        res.status(409).json({message:error.message});
+    } catch (error) { // Fix: Pass the error object in the catch block
+        res.status(409).json({ message: error.message });
     }
 }
 
@@ -26,6 +27,7 @@ const getCompamnyDemandsById=async(req,res)=>{
     const {companyID}=req.params;
     try{
         const companyDemands=await CompanyDemand.find({companyID:companyID});
+        console.log("cvgndhvfhjbd");
         res.status(200).json(companyDemands);
     }catch(error){
         res.status(404).json({message:error.message});

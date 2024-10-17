@@ -3,5 +3,5 @@ import { getCompaniesDemands,ListCompanyDemands,getCompamnyDemandsById } from ".
 const router = express.Router();
 router.post("/create", ListCompanyDemands);
 router.get("/get", getCompaniesDemands);
-router.get("/get/:id", getCompamnyDemandsById);
+router.get("/get/:companyID", getCompamnyDemandsById);
 export default router;
