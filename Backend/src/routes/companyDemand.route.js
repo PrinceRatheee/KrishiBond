@@ -4,5 +4,5 @@ const router = express.Router();
 router.post("/create", ListCompanyDemands);
 router.get("/get", getCompaniesDemands);
 router.get("/get/:companyID", getCompamnyDemandsById);
-router.post("/approvedFarmerBids", approvedFarmerBids);
+router.post("/approvedFarmerBids/:bidId", approvedFarmerBids);
 export default router;
