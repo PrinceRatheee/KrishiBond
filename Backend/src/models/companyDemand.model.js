@@ -1,0 +1,43 @@
+import mongoose from mongoose;
+
+
+
+const companyDemandSchema = mongoose.Schema({
+    crop: {
+        type: String,
+        required: true,
+    },
+    duration:{
+        type:Number,  //in days , in other case change it in frontend
+        required:true,
+    },
+    
+    quantity:{
+        type:Number, //in kg
+        required: true
+    },
+    rate:{
+        type:Number , //in per kg
+        required: true
+    },
+    
+    bidsApplied:{
+
+    },
+    bidsAccepted:{
+
+    },
+    quantityLeft:{
+        type: Number,
+        default: quantity
+    },
+    
+   
+  
+}, {
+    timestamps: true
+});
+
+const CompanyDemand = mongoose.model('User', companyDemandSchema);
+
+export default CompanyDemand;
