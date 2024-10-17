@@ -2,6 +2,7 @@
 import {  Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AuthPage from "./pages/AuthPage";
+import About from "./pages/About";
 
 import DetailPage from "./pages/DetailPage";
 import CompanyDemandForm from "./pages/CompanyDemandForm.jsx";
@@ -18,6 +19,7 @@ function App() {
             <Route path="/detail" element={<DetailPage />} />
             <Route path="/create" element={< CompanyDemandForm/>} />
             <Route path="/profile" element={<Dashboard/>}/>
+            <Route path="/about" element={<About/>}/>
           </Routes>
         
      
