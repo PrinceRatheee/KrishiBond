@@ -1,4 +1,4 @@
-import Bid from "./bid.model";
+
 import mongoose from mongoose;
 
 
