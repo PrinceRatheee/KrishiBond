@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axiosinstance from "./../../Helpers/axiosinstance";
+import axiosinstance from "./../../Helper/axiosinstance";
 
 
 const initialState = {
@@ -13,10 +13,9 @@ const initialState = {
     async (data, { rejectWithValue }) => {
       console.log("data in thunk", data);
       try {
-        const product = await axiosinstance.post("/auth/user/signup", data);
+        const resp = await axiosinstance.post("/api/auth/user/signup", data);
 
-        console.log("resp", product);
-        return product.data;
+        console.log("resp", resp);
       } catch (error) {
         return rejectWithValue(error.response.data);
       }
@@ -28,7 +27,7 @@ const initialState = {
     async (data, { rejectWithValue }) => {
       console.log("data in thunk", data);
       try {
-        const resp = await axiosinstance.post("/auth/user/login", data);
+        const resp = await axiosinstance.post("/api/auth/user/login", data);
 
         console.log("resp", resp);
         return resp.data;

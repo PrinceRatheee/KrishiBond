@@ -9,16 +9,13 @@ const AuthPage = () => {
     setIsLogin(!isLogin);
   };
 
-  const handleSubmit = (data) => {
-    console.log(data);
-    
-  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       {isLogin ? (
-        <LoginForm onSwitch={handleSwitch} onSubmit={handleSubmit} />
+        <LoginForm onSwitch={handleSwitch}  />
       ) : (
-        <SignupForm onSwitch={handleSwitch} onSubmit={handleSubmit} />
+        <SignupForm onSwitch={handleSwitch}  />
       )}
     </div>
   );

@@ -1,14 +1,21 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { FarmerSignup } from './../Redux/Farmer/FarmerSlice';
+import { useDispatch } from "react-redux";
 
-const SignupForm = ({ onSwitch, onSubmit }) => {
+
+const SignupForm = ({ onSwitch }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('Company'); 
-  const handleSignup = (e) => {
+  const dispatch = useDispatch();
+  const handleSignup = async (e) => {
     e.preventDefault();
-    onSubmit({ name, email, password ,role});
+  
+    const resp = await dispatch(FarmerSignup({ name, email, password ,role}));
+    console.log(resp);
+
   };
   
 
