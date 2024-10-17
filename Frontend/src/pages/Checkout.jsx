@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation ,useParams} from "react-router-dom";
 import axiosinstance from "../Helper/axiosinstance";
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const location = useLocation();
-  const { demand } = location.state; // Extract demand details from state
+  const { demand } = location.state; 
+  console.log(demand)// Extract demand details from state
   const userId = useSelector((state) => state.auth.data.id); // Get user ID from Redux
+  const {id} = useParams();
+
   console.log("id", userId);
-//   console.log('user',userId);  
+  //   console.log('user',userId);
   const [bids, setBids] = useState([]); // Store list of bids
   const [isBidMade, setIsBidMade] = useState(false); // Check if the user already made a bid
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Control popup visibility
@@ -29,9 +32,11 @@ const Checkout = () => {
   // Fetch bids from the backend
   const fetchBids = async () => {
     try {
-      const response = await axiosinstance.get(`/api/farmerBid/getBidsByDemandId/${demand._id}`);
+      const response = await axiosinstance.get(
+        `/api/farmerBid/getBidsByDemandId/${demand._id}`
+      );
       setBids(response.data);
-
+      console.log("resp data", response.data);
       // Check if the user already made a bid
       const userBid = response.data.find((bid) => bid.user === userId);
       if (userBid) setIsBidMade(true);
@@ -86,15 +91,18 @@ const Checkout = () => {
           {demand.crop}
         </h2>
         <p className="text-gray-300 text-center mb-6">
-          Demand by: <span className="font-semibold">{useSelector((state) => state.company.Company.sendUser.name)}</span>
+          Demand by:{" "}
+          <span className="font-semibold">
+            {}
+          </span>
         </p>
-
         <div className="text-gray-300 mb-8 space-y-2">
           <p>
             <span className="font-semibold">Duration:</span> {demand.duration}
           </p>
           <p>
-            <span className="font-semibold">Quantity:</span> {demand.quantity} tons
+            <span className="font-semibold">Quantity:</span> {demand.quantity}{" "}
+            tons
           </p>
           <p>
             <span className="font-semibold">Rate:</span> ₹{demand.rate} per ton
@@ -106,7 +114,9 @@ const Checkout = () => {
           onClick={() => setIsPopupOpen(true)}
           disabled={isBidMade}
           className={`w-full ${
-            isBidMade ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-500 hover:bg-cyan-600"
+            isBidMade
+              ? "bg-gray-600 cursor-not-allowed"
+              : "bg-cyan-500 hover:bg-cyan-600"
           } text-white font-bold py-2 rounded-lg transition`}
         >
           {isBidMade ? "Bid Already Submitted" : "Add Bid"}
@@ -116,7 +126,9 @@ const Checkout = () => {
         {isPopupOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-              <h3 className="text-2xl font-semibold text-cyan-400 mb-4">Submit Your Bid</h3>
+              <h3 className="text-2xl font-semibold text-cyan-400 mb-4">
+                Submit Your Bid
+              </h3>
 
               <input
                 type="number"
@@ -163,7 +175,9 @@ const Checkout = () => {
 
       {/* Bids Section */}
       <div className="max-w-3xl mx-auto mt-12">
-        <h3 className="text-xl font-semibold text-cyan-400 mb-6">Submitted Bids</h3>
+        <h3 className="text-xl font-semibold text-cyan-400 mb-6">
+          Submitted Bids
+        </h3>
         <div className="space-y-4">
           {bids.length > 0 ? (
             bids.map((bid) => (
@@ -173,16 +187,21 @@ const Checkout = () => {
               >
                 <div>
                   <p className="text-white">
-                    <span className="font-semibold">Bid Rate:</span> ₹{bid.appliedRate}
+                    <span className="font-semibold">Bid Rate:</span> ₹
+                    {bid.appliedRate}
                   </p>
                   <p className="text-gray-300">
-                    <span className="font-semibold">Quantity:</span> {bid.quantity} tons
+                    <span className="font-semibold">Quantity:</span>{" "}
+                    {bid.quantity} tons
                   </p>
                   <p className="text-gray-300">
-                    <span className="font-semibold">Duration:</span> {bid.duration}
+                    <span className="font-semibold">Duration:</span>{" "}
+                    {bid.duration}
                   </p>
                 </div>
-                <p className="text-gray-400">{new Date(bid.createdAt).toLocaleString()}</p>
+                <p className="text-gray-400">
+                  {new Date(bid.createdAt).toLocaleString()}
+                </p>
               </div>
             ))
           ) : (
