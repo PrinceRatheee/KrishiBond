@@ -13,7 +13,6 @@ const AuthPage = () => {
     console.log(data);
     
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       {isLogin ? (
