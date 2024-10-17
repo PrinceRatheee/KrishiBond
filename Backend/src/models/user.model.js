@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Bid from './bid.model';
+import Bid from './bid.model.js';
 
 const userSchema = mongoose.Schema({
     name: {

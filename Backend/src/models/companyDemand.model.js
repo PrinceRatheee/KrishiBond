@@ -1,5 +1,5 @@
-import Bid from "./bid.model";
-import mongoose from mongoose;
+import Bid from "./bid.model.js";
+import mongoose from "mongoose";
 
 
 
