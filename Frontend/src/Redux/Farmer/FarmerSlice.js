@@ -45,8 +45,7 @@ const initialState = {
     name: "farmer",
     initialState,
     reducers: {},
-<<<<<<< HEAD
-=======
+
     // // extraReducers: (builder) => {
     // builder.addCase(FarmerLogin.fulfilled, (state, action) => {
       
@@ -62,7 +61,6 @@ const initialState = {
     //   );
     // });
 // }
->>>>>>> 7199229e1852c2b07a75977b9e6d0dcc8e245e0e
   });
 
 export default FarmerSlice.reducer;
