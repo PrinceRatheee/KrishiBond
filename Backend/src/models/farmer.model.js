@@ -6,6 +6,17 @@ const farmerSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  email:{
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true,
+    trim: true
+  },
   contact: {
     type: String,
     required: true,
@@ -17,11 +28,7 @@ const farmerSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-//   registrationId: {
-//     type: String,
-//     required: true,
-//     unique: true  // Unique ID for blockchain
-//   },
+
   farmSize: {
     type: Number,  
     required: false
@@ -36,7 +43,7 @@ const farmerSchema = new mongoose.Schema({
   },
   smartContracts: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'SmartContract' // Reference to smart contract model
+    ref: 'SmartContract' 
   }]
 }, {
   timestamps: true  
