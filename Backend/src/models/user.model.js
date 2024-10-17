@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import Bid from './bid.model';
 
 const userSchema = mongoose.Schema({
     name: {
@@ -26,8 +25,7 @@ const userSchema = mongoose.Schema({
     },
     bids:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Bid'
-
+        ref: "Bid"
     }]
   
 }, {
