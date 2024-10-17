@@ -3,8 +3,8 @@ import mongoose from mongoose;
 
 
 const companyDemandSchema = mongoose.Schema({
-    companyID:{
-        type:mongoose.Schema.Types.ObjectId,
+    companyID: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     crop: {
