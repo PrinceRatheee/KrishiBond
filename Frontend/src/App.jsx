@@ -7,6 +7,7 @@ import About from "./pages/About";
 import DetailPage from "./pages/DetailPage";
 import CompanyDemandForm from "./pages/CompanyDemandForm.jsx";
 import Dashboard from "./components/Dashboard.jsx";
+import AllDemands from "./pages/AllDemands";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/create" element={< CompanyDemandForm/>} />
             <Route path="/profile" element={<Dashboard/>}/>
             <Route path="/about" element={<About/>}/>
+            <Route path="/get" element={<AllDemands/>}/>
           </Routes>
         
      
