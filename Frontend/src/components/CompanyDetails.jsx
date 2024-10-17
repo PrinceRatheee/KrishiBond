@@ -14,7 +14,7 @@ const CompanyDetails = () => {
   const [gst, setGst] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit =async  (e) => {
     e.preventDefault();
     const data = {
       name: Company?.sendUser?.name,
@@ -23,10 +23,13 @@ const CompanyDetails = () => {
       address: Address,
       GSTNumber: gst,
     };
-    const resp = dispatch(CompanyDetail(data));
-    console.log("resp on submit", resp);
-    dispatch(updateCompany(data));
-    navigate("/");
+    const resp = await dispatch(CompanyDetail(data));
+    console.log("resp on submit", resp.payload.data.success);
+    if(resp.payload.data.success){
+      console.log('company update')
+      dispatch(updateCompany(data));
+      navigate("/");
+    }
   };
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">

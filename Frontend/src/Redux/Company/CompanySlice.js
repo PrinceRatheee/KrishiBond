@@ -15,11 +15,11 @@ export const CompanyDetail = createAsyncThunk(
     try {
       const resp = await axiosinstance.post("api/auth/user/login/companydetails", data);
       console.log("resp", resp);
+      return resp;
     } catch (error) {
       return rejectWithValue(error.response);
     }
   }
-
 
 );
 
