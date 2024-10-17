@@ -42,4 +42,14 @@ const getBidsByDemandId=async(req,res)=>{
         res.status(500).json({message:error.message});
     }
 }
-export  {createBidForFarmer,getBidsByDemandId};
+
+const getBidsByUserId=async(req,res)=>{
+    try {
+        const {userId}=req.params;
+        const bids=await Bid.find({user:userId});
+        res.status(200).json(bids);
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
+export  {createBidForFarmer,getBidsByDemandId,getBidsByUserId};
