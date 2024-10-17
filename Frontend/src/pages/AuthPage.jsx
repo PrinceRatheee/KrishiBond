@@ -11,14 +11,11 @@ const AuthPage = () => {
 
   const handleSubmit = (data) => {
     console.log(data);
-    alert("Account created/logged in. Now generating a room...");
-    generateRoom();
+    
   };
 
-  const generateRoom = () => {
-    const roomId = Math.random().toString(36).substr(2, 9);
-    alert(`Room created! Your room ID is: ${roomId}`); 
-  };
+
+  
   return (
     <div className="min-h-screen flex items-center justify-center">
       {isLogin ? (
