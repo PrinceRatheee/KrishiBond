@@ -8,7 +8,7 @@ import AuthSlice from "./Auth/AuthSlice";
 
 const rootReducer = combineReducers({
   farmer: FarmerSlice,
-  compnay: CompanySlice,
+  company: CompanySlice,
   auth: AuthSlice,
 });
 
