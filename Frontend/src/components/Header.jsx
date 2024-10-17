@@ -1,7 +1,7 @@
 'use client'
 
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';  // Import Link
 import { useDispatch } from 'react-redux';
 import { logout } from "../Redux/Auth/AuthSlice";
 import { motion } from 'framer-motion';
@@ -25,10 +25,10 @@ const Header = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
   const navItems = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Contact', href: '#' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Marketplace', href: '/marketplace' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -50,21 +50,22 @@ const Header = () => {
       </motion.div>
       <nav className="flex items-center space-x-4">
         {navItems.map((item, index) => (
-          <motion.a
+          <motion.div
             key={item.name}
-            href={item.href}
             className="text-sm relative py-1"
             onHoverStart={() => setHoveredItem(index)}
             onHoverEnd={() => setHoveredItem(null)}
           >
-            {item.name}
+            <Link to={item.href} className="text-gray-200">
+              {item.name}
+            </Link>
             {hoveredItem === index && (
               <motion.span
                 className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400"
                 layoutId="underline"
               />
             )}
-          </motion.a>
+          </motion.div>
         ))}
         {isLoggedIn ? (
           <motion.button
