@@ -21,4 +21,14 @@ const ListCompanyDemands=async(req,res)=>{
         res.status(409).json({message:error.message});
     }
 }
-export{ getCompaniesDemands,ListCompanyDemands};
+
+const getCompamnyDemandsById=async(req,res)=>{
+    const {companyID}=req.params;
+    try{
+        const companyDemands=await CompanyDemand.find({companyID:companyID});
+        res.status(200).json(companyDemands);
+    }catch(error){
+        res.status(404).json({message:error.message});
+    }
+}
+export{ getCompaniesDemands,ListCompanyDemands,getCompamnyDemandsById};
