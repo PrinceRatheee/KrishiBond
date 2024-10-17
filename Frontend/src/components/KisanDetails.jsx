@@ -1,18 +1,20 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 
-const KisanDetails = ({ onSwitch, onSubmit }) => {
+const KisanDetails = () => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [Address, setAddress] = useState('');
   const [Farmsize, setFarmsize] = useState('Company'); 
   const handleSignup = (e) => {
     e.preventDefault();
-    onSubmit({  Address,Farmsize,contact});
+    //onSubmit({  Address,Farmsize,contact});
   };
+
 
   return (
     <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-md mx-auto">
-      <h2 className="text-3xl font-semibold text-white mb-6">Sign Up</h2>
+      <h2 className="text-3xl font-semibold text-white mb-6">Farm Details</h2>
       <form onSubmit={handleSignup}>
         <div className="mb-4">
           <label className="block text-gray-300 text-sm mb-2" htmlFor="name">

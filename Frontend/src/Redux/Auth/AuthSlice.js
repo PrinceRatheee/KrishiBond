@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosinstance from "./../../Helper/axiosinstance";
-import { useSelector } from "react-redux";
 
 const initialState = {
   auth: [],
@@ -44,13 +44,11 @@ const AuthSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(AuthLogin.fulfilled, (state, action) => {
-      console.log("action", action.payload.data.sendUser.role);
-      const user = useSelector((state) => state.farmer);
-      const company = useSelector((state) => state.Company);
+      console.log("action", action.payload.data.sendUser.role)
+     
 
       if (action.payload.data.sendUser.role == "industry") {
-        console.log(user);
-        console.log(company);
+        console.log('here')
       }
     });
   },
