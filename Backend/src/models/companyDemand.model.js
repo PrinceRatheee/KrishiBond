@@ -3,10 +3,15 @@ import mongoose from mongoose;
 
 
 const companyDemandSchema = mongoose.Schema({
+    companyID:{
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
     crop: {
         type: String,
         required: true,
     },
+
     duration:{
         type:Number,  //in days , in other case change it in frontend
         required:true,

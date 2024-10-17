@@ -2,21 +2,30 @@ import mongoose from 'mongoose';
 
 const bidSchema = mongoose.Schema({
 
+    user:{
+
+    },
+    status:{
+        type: String,
+        enum: ['pending', 'approved', 'rejected'],
+        required: true,
+    },
+    appliedFor:{
+
+    },
+    appliedRate:{
+        type: Number,
+        required: true
+    },
+    quantity:{
+        type: Number , //in kg 
+        required: true
+    },
+    duration:{
+        type : Number, // in days
+        required: true
+    }
     
-    // farmer: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'User',
-    // },
-    // demand: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'Demand',
-    // },
-    // amount: {
-    //     type: Number,
-    //     required: true,
-    // },
 }, {
     timestamps: true
 });
