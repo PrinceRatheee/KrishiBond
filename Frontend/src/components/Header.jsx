@@ -1,4 +1,3 @@
-'use client'
 
 import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';  // Import Link
@@ -12,10 +11,12 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [hoveredItem, setHoveredItem] = useState(null);
-
+const {role} = useSelector((state)=> state.auth)
   const handleLogin = () => {
     navigate('/auth')
   }
+
+  
 
   const handleLogout = () => {
     console.log('logout hit')
@@ -27,10 +28,9 @@ const Header = () => {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Marketplace', href: '/marketplace' },
+    { name: 'Marketplace', href: '/get' },
     { name: 'Contact', href: '/contact' },
   ];
-
   return (
     <motion.header 
       className="py-3 px-6 flex justify-between items-center bg-gradient-to-r from-gray-900 via-blue-900 to-black text-gray-200 shadow-md"

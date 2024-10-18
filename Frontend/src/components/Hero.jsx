@@ -10,13 +10,13 @@ const Hero = () => (
     </p>
     <div className="mt-8 space-x-4">
       <a
-        href="#"
+        href="/get"
         className="px-6 py-3 bg-cyan-500 text-white rounded-lg shadow-md hover:bg-cyan-600 transition"
       >
         Explore Marketplace
       </a>
       <a
-        href="#"
+        href="/about"
         className="px-6 py-3 bg-gray-800 text-gray-300 rounded-lg shadow-md hover:bg-gray-700 transition"
       >
         Learn More
