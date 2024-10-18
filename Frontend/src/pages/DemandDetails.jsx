@@ -118,8 +118,12 @@ const DemandDetails = () => {
       amount
     );
     await transaction.wait();
-
-    
+   const response=await axiosinstance.post(`/api/farmerBid/delivered/${id}`);
+   if(response.status===200){
+     console.log("Delivered");
+    }else{
+      console.log("Error delivering");
+    } 
     window.location.reload();
   }
 
