@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Bid from "../models/bid.model.js";
 import CompanyDemand from "../models/companyDemand.model.js";
+import Company from "../models/company.model.js";
 
 const createBidForFarmer = async (req, res) => {
   try {
@@ -67,6 +68,9 @@ const approveBidsByCompany = async (req, res) => {
   try {
     const { bidID: id } = req.params;
     const bids = await Bid.findByIdAndUpdate(id, { status: "approved" });
+    const companyDemand=await CompanyDemand.findById(bids.appliedFor[0]);
+    companyDemand.bidsAccepted.push(bids);
+    companyDemand.save();
     bids.save();
     res.status(200).json(bids);
   }catch(error){
