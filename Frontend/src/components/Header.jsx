@@ -5,30 +5,32 @@ import { logout } from "../Redux/Auth/AuthSlice";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Leaf } from 'lucide-react';
-import { Link as ScrollLink } from 'react-scroll'; // Import ScrollLink for Contact
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [hoveredItem, setHoveredItem] = useState(null);
-  const { role } = useSelector((state) => state.auth);
-
+const {role} = useSelector((state)=> state.auth)
   const handleLogin = () => {
-    navigate('/auth');
-  };
+    navigate('/auth')
+  }
+
+  
 
   const handleLogout = () => {
-    console.log('logout hit');
-    dispatch(logout());
-  };
+    console.log('logout hit')
+    dispatch(logout())
+  }
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const navItems = [
-    { name: 'Home', to: '/', type: 'link' },
-    { name: 'About', to: '/about', type: 'link' },
-    { name: 'Marketplace', to: '/get', type: 'link' },
-    { name: 'Contact', to: 'contact', type: 'scroll' }, // Scroll to Contact section
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    role === 'industry'
+    ? { name: 'Create Demands', href: '/demands' }
+    : { name: 'Marketplace', href: '/get' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -48,7 +50,7 @@ const Header = () => {
           Krishi Bond
         </h1>
       </motion.div>
-      <nav className="flex items-center space-x-4">
+      <nav className="    flex items-center space-x-4">
         {navItems.map((item, index) => (
           <motion.div
             key={item.name}
