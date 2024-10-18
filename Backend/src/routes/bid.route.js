@@ -14,5 +14,5 @@ router.get("/getBidsByUserId/:userId", getBidsByUserId);
 router.get("/updateBidsByUserID/:bidID",updateBidsByUser);
 router.post("/startDelivery/:bidID", startDelivery);
 router.post("/updateDelivery/:bidID", updateDelivery);
-router.post("/approveBidsByCompany/:bidID", updateBidsByCompany);
+router.post("/approveBidsByCompany/:bidID", approveBidsByCompany);
 export default router;

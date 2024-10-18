@@ -17,7 +17,6 @@ const DemandDetails = () => {
   });
   const [account, setAccount] = useState("Not connected");
   useEffect(() => {
-    console.log("ndghjhfdb----");
     const template = async () => {
       const contractAddres = import.meta.env.VITE_HARDHAT_DEPLOYED_NETWORK;
 
@@ -67,6 +66,7 @@ const DemandDetails = () => {
       const response = await axiosinstance.get(
         `/api/farmerBid/getBidsByDemandId/${id}`
       );
+      console.log("setBidws---", response.data);
       setBids(response.data);
     } catch (error) {
       console.error("Error fetching bids:", error);
@@ -77,9 +77,8 @@ const DemandDetails = () => {
     fetchAllBids(); // Fetch all bids when the page loads
   }, []);
 
-  const handleAccept = async ( bidId) => {
-    
-   
+  const handleAccept = async (bidId, event) => {
+    event.preventDefault();
     const contract = state.contract;
     const amount = { value: ethers.utils.parseEther("20") };
     console.log("Accepted");
@@ -89,14 +88,16 @@ const DemandDetails = () => {
     );
     await transaction.wait();
     // alert("Transaction is successul");
-    const response = await axiosinstance.post(`/api/farmerBid/approveBidsByCompany/${bidId}`);
-       if(response.status === 200){
-          console.log("Bid Accepted");
-        }else{
-          console.log("Error accepting bid");
-        }
+    const response = await axiosinstance.post(
+      `/api/farmerBid/approveBidsByCompany/${bidId}`
+    );
+    console.log("fhggdfyu7u7i3");
+    if (response.status === 200) {
+      console.log("Bid Accepted");
+    } else {
+      console.log("Error accepting bid");
+    }
     window.location.reload();
-    
   };
 
   const handleReject = () => {
@@ -160,26 +161,41 @@ const DemandDetails = () => {
                 </p>
 
                 {/* Action Buttons */}
-                <div className="flex space-x-4 mt-4">
-                  <button
-                    onClick={handleAccept(bid._id)}
-                    className="w-1/3 bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition"
-                  >
-                    Accept
-                  </button>
-                  <button
-                    onClick={handleReject}
-                    className="w-1/3 bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition"
-                  >
-                    Reject
-                  </button>
-                  <button
-                    onClick={handleContact}
-                    className="w-1/3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition"
-                  >
-                    Contact
-                  </button>
-                </div>
+                {bid.status === "approved" ? (
+                  <>
+                    <div className="flex space-x-4 mt-4">
+                    <button
+                        
+                        className="w-1/3 bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition"
+                      >
+                        Approved
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex space-x-4 mt-4">
+                      <button
+                        onClick={(event) => handleAccept(bid._id, event)}
+                        className="w-1/3 bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={handleReject}
+                        className="w-1/3 bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition"
+                      >
+                        Reject
+                      </button>
+                      <button
+                        onClick={handleContact}
+                        className="w-1/3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition"
+                      >
+                        Contact
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             ))
           ) : (
