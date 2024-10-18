@@ -55,7 +55,6 @@ const getBidsByUserId = async (req, res) => {
 };
 const updateBidsByUser = async (req, res) => {
   try {
-    console.log("here");
     const { bidID: id } = req.params;
     const bids = await Bid.findByIdAndUpdate(id, { status: "cancelled" });
     bids.save();
@@ -64,9 +63,33 @@ const updateBidsByUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+const updateDelivery = async (req, res) => {
+  try {
+    const { bidID: id } = req.params;
+    const bids = await Bid.findByIdAndUpdate(id, { delivered: true });
+    bids.save();
+    res.status(200).json(bids);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+const startDelivery = async (req, res) => {
+  try {
+    const { bidID: id } = req.params;
+    const bids = await Bid.findByIdAndUpdate(id, { deliveryStart: true });
+    bids.save();
+    res.status(200).json(bids);
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }
+}
 export {
   createBidForFarmer,
   getBidsByDemandId,
   getBidsByUserId,
   updateBidsByUser,
+  startDelivery,
+  updateDelivery,
 };
