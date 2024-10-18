@@ -6,31 +6,36 @@ import { logout } from "../Redux/Auth/AuthSlice";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Leaf } from 'lucide-react';
+0.3
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [hoveredItem, setHoveredItem] = useState(null);
-const {role} = useSelector((state)=> state.auth)
+const {role} = useSelector((state)=> state.auth);
   const handleLogin = () => {
     navigate('/auth')
   }
-
-  
 
   const handleLogout = () => {
     console.log('logout hit')
     dispatch(logout())
   }
 
+  
+
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Marketplace', href: '/get' },
+    role === 'industry'
+    ? { name: 'Create Demands', href: '/demands' }
+    : { name: 'Marketplace', href: '/get' },
     { name: 'Contact', href: '/contact' },
   ];
+
+
   return (
     <motion.header 
       className="py-3 px-6 flex justify-between items-center bg-gradient-to-r from-gray-900 via-blue-900 to-black text-gray-200 shadow-md"
@@ -48,7 +53,7 @@ const {role} = useSelector((state)=> state.auth)
           Krishi Bond
         </h1>
       </motion.div>
-      <nav className="flex items-center space-x-4">
+      <nav className="    flex items-center space-x-4">
         {navItems.map((item, index) => (
           <motion.div
             key={item.name}
