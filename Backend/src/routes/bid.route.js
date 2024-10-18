@@ -4,7 +4,8 @@ import {
   getBidsByDemandId,
   getBidsByUserId,updateBidsByUser,
   startDelivery,
-  updateDelivery
+  updateDelivery,
+  approveBidsByCompany
 } from "../controller/bid.controller.js";
 const router = express.Router();
 router.post("/createBidForFarmer/:demandId", createBidForFarmer);
@@ -13,4 +14,5 @@ router.get("/getBidsByUserId/:userId", getBidsByUserId);
 router.get("/updateBidsByUserID/:bidID",updateBidsByUser);
 router.post("/startDelivery/:bidID", startDelivery);
 router.post("/updateDelivery/:bidID", updateDelivery);
+router.post("/approveBidsByCompany/:bidID", updateBidsByCompany);
 export default router;

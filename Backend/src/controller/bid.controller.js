@@ -63,6 +63,16 @@ const updateBidsByUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const approveBidsByCompany = async (req, res) => {
+  try {
+    const { bidID: id } = req.params;
+    const bids = await Bid.findByIdAndUpdate(id, { status: "approved" });
+    bids.save();
+    res.status(200).json(bids);
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }
+}
 
 const updateDelivery = async (req, res) => {
   try {
@@ -92,4 +102,5 @@ export {
   updateBidsByUser,
   startDelivery,
   updateDelivery,
+  approveBidsByCompany
 };
