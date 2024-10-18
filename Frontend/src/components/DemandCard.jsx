@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for naviga
 const DemandCard = ({ demand }) => {
   const { cropImage, crop, duration, quantity, rate, _id } = demand; // Assuming demand has _id
   const navigate = useNavigate(); // Hook for programmatic navigation
-
+  
   // Handle navigation to the checkout page
   const handleCheckout = () => {
     navigate(`/checkout/${_id}`, { state: { demand } }); // Pass demand details to the new page
@@ -13,11 +13,9 @@ const DemandCard = ({ demand }) => {
   return (
     <div className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
       {/* Crop Image */}
-      <img
-        src={cropImage}
-        alt={crop}
-        className="w-full h-40 object-cover rounded-lg mb-4"
-      />
+      
+        {crop==="wheat" ? <img src="https://www.shutterstock.com/image-photo/wheat-ears-isolated-on-white-260nw-1969403536.jpg" alt="Rice" className="w-full h-48 object-cover rounded-lg mb-4" /> :<img src="https://images.pexels.com/photos/2589457/pexels-photo-2589457.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Rice" className="w-full h-48 object-cover rounded-lg mb-4" />}
+      
 
       {/* Crop Info */}
       <h3 className="text-2xl font-semibold text-cyan-400 mb-2">{crop}</h3>
