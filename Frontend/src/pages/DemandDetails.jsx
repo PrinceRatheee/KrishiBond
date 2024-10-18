@@ -77,8 +77,9 @@ const DemandDetails = () => {
     fetchAllBids(); // Fetch all bids when the page loads
   }, []);
 
-  const handleAccept = async (event) => {
-    event.preventDefault();
+  const handleAccept = async ( bidId) => {
+    
+   
     const contract = state.contract;
     const amount = { value: ethers.utils.parseEther("20") };
     console.log("Accepted");
@@ -87,9 +88,12 @@ const DemandDetails = () => {
       amount
     );
     await transaction.wait();
-    alert("Transaction is successul");
+    // alert("Transaction is successul");
+
+
+
     window.location.reload();
-    // Add logic for accepting a bid (e.g., backend call)
+    
   };
 
   const handleReject = () => {
@@ -155,7 +159,7 @@ const DemandDetails = () => {
                 {/* Action Buttons */}
                 <div className="flex space-x-4 mt-4">
                   <button
-                    onClick={handleAccept}
+                    onClick={handleAccept(bid._id)}
                     className="w-1/3 bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition"
                   >
                     Accept
