@@ -33,11 +33,11 @@ function FarmerProfile() {
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {bids.length > 0 ? (
       bids.map((bid,index) => (
-
         <BidCard key={index} duration={bid.duration} quantity={bid.quantity} 
         appliedRate={
           bid.appliedRate
           } status={bid.status}
+          bidID={bid._id}
         />
       ))
     ) : (

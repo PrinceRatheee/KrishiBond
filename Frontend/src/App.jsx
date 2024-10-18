@@ -14,6 +14,7 @@ import DemandDetails from "./pages/DemandDetails";
 import AllDemands from "./pages/AllDemands";
 import Checkout from "./pages/Checkout.jsx";
 import RequireAuth from "./components/RequiredAuth";
+import CancelBid from './pages/FarmerCancelPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/get" element={<AllDemands />} />
           <Route path="/checkout/:id" element={<Checkout />} />
           <Route path="/demand/:id" element={<DemandDetails />} />
+          <Route path="/profile/cancel" element={<CancelBid />} />
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />

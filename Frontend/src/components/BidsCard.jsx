@@ -1,15 +1,35 @@
 /* eslint-disable react/prop-types */
+import axiosinstance from "./../Helper/axiosinstance";
+import { useNavigate } from 'react-router-dom';
 
-function BidCard({companyname,appliedRate,duration,quantity,status}) {
+function BidCard({
+  companyname,
+  appliedRate,
+  duration,
+  quantity,
+  status,
+  bidID,
+}) {
+  const navigate = useNavigate();
+  const handleCancel = async () => {
 
-
-    // const { cropImage, crop, duration, quantity, rate, _id } = demand;
+    if (status == "pending") {
+      const resp = await axiosinstance.get(
+        `/api/farmerBid/updateBidsByUserID/${bidID}`
+      );
+      console.log(resp);
+    } else {
+      navigate("/profile/cancel");
+    }
+  };
   return (
     <div>
       <div className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
         {/* Crop Image */}
         {/* Crop Info */}
-        <h3 className="text-2xl font-semibold text-cyan-400 mb-2">{companyname}</h3>
+        <h3 className="text-2xl font-semibold text-cyan-400 mb-2">
+          {companyname}
+        </h3>
         <p className="text-gray-300">
           <span className="font-semibold">Duration:</span> {duration}
         </p>
@@ -20,15 +40,15 @@ function BidCard({companyname,appliedRate,duration,quantity,status}) {
           <span className="font-semibold">Rate:</span> ₹{appliedRate} per ton
         </p>
         <p className="text-gray-300">
-          <span className="font-semibold">Status:</span> {status} 
+          <span className="font-semibold">Status:</span> {status}
         </p>
 
         {/* Checkout Button */}
         <button
-        //   onClick={handleCheckout}
-          className="mt-4 w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 rounded-lg transition"
+          onClick={handleCancel}
+          className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition"
         >
-          View
+          Cancel
         </button>
       </div>
     </div>
