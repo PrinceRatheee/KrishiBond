@@ -109,6 +109,20 @@ const DemandDetails = () => {
     navigate(`/contact`, { state: { crop } }); // Navigate to a contact page (optional)
   };
 
+  const handleDeliver=async(e)=>{
+    e.preventDefault();
+    const contract = state.contract;
+    const amount = { value: ethers.utils.parseEther("20") };
+    const transaction = await contract.sendToSpecificAddress(
+      "0xFABB0ac9d68B0B445fB7357272Ff202C5651694a",
+      amount
+    );
+    await transaction.wait();
+
+    
+    window.location.reload();
+  }
+
   return (
     <div className="bg-gradient-to-r from-gray-900 via-black to-blue-900 min-h-screen text-white py-12">
       <div className="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
@@ -170,6 +184,12 @@ const DemandDetails = () => {
                       >
                         Approved
                       </button>
+                      {bid.deliveryStart &&<button
+                        onClick={(e)=>handleDeliver(e)}
+                        className="w-1/3 bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition"
+                      >
+                        Delivered
+                      </button>}
                     </div>
                   </>
                 ) : (
