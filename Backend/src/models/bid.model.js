@@ -28,6 +28,14 @@ const bidSchema = new Schema({
     duration: {
         type: Number, // in days
         required: true
+    },
+    deliveryStart:{
+        type:Boolean,
+        default:false
+    },
+    delivered:{
+        type:Boolean,
+        default:false
     }
 }, {
     timestamps: true

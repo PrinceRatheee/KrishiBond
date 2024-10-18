@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import axiosinstance from "./../Helper/axiosinstance";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function BidCard({
   companyname,
@@ -11,6 +12,15 @@ function BidCard({
   bidID,
 }) {
   const navigate = useNavigate();
+  const [deliver, setDeliver] = useState("Deliver start");
+  const handleDeliver = async () => {
+    setDeliver("Delivering...");
+    // const resp = await axiosinstance.get(
+    //   `/api/farmerBid/updateBidsByUserID/${bidID}`
+    // );
+    // console.log(resp);
+    // navigate("/profile/deliver");
+  }
   const handleCancel = async () => {
 
     if (status == "pending") {
@@ -22,8 +32,8 @@ function BidCard({
       navigate("/profile/cancel");
     }
   };
-  return (
-    <div>
+  if(status!=='cancelled'){
+    return (<div>
       <div className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
         {/* Crop Image */}
         {/* Crop Info */}
@@ -50,9 +60,19 @@ function BidCard({
         >
           Cancel
         </button>
+        {status=='approved' && <button
+          onClick={handleDeliver}
+          className="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition"
+        >
+           {deliver}
+        </button>}
       </div>
-    </div>
-  );
+    </div>)
+}else{
+  return (
+    <></>
+  )
+}
 }
 
 export default BidCard;
