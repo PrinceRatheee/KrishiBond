@@ -38,6 +38,8 @@ function FarmerProfile() {
           bid.appliedRate
           } status={bid.status}
           bidID={bid._id}
+          deliveryStart={bid.deliveryStart}
+          delivered={bid.delivered}
         />
       ))
     ) : (
