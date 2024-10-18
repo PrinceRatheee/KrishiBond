@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => (
-  <footer className="bg-black bg-opacity-90 py-12">
+  <footer name='contact' className="bg-black bg-opacity-90 py-12">
     <div className="container mx-auto  text-center text-white">
       <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
       <p className="text-gray-400">Connect with us on social media</p>

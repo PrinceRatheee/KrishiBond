@@ -1,36 +1,36 @@
-
 import { useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';  // Import Link
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { useDispatch } from 'react-redux';
 import { logout } from "../Redux/Auth/AuthSlice";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Leaf } from 'lucide-react';
+import { Link as ScrollLink } from 'react-scroll'; // Import ScrollLink for Contact
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [hoveredItem, setHoveredItem] = useState(null);
-const {role} = useSelector((state)=> state.auth)
-  const handleLogin = () => {
-    navigate('/auth')
-  }
+  const { role } = useSelector((state) => state.auth);
 
-  
+  const handleLogin = () => {
+    navigate('/auth');
+  };
 
   const handleLogout = () => {
-    console.log('logout hit')
-    dispatch(logout())
-  }
+    console.log('logout hit');
+    dispatch(logout());
+  };
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Marketplace', href: '/get' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', to: '/', type: 'link' },
+    { name: 'About', to: '/about', type: 'link' },
+    { name: 'Marketplace', to: '/get', type: 'link' },
+    { name: 'Contact', to: 'contact', type: 'scroll' }, // Scroll to Contact section
   ];
+
   return (
     <motion.header 
       className="py-3 px-6 flex justify-between items-center bg-gradient-to-r from-gray-900 via-blue-900 to-black text-gray-200 shadow-md"
@@ -56,9 +56,21 @@ const {role} = useSelector((state)=> state.auth)
             onHoverStart={() => setHoveredItem(index)}
             onHoverEnd={() => setHoveredItem(null)}
           >
-            <Link to={item.href} className="text-gray-200">
-              {item.name}
-            </Link>
+            {item.type === 'scroll' ? (
+              <ScrollLink 
+                to={item.to} 
+                smooth={true} 
+                duration={500} 
+                offset={-70} // Adjust for header height
+                className="text-gray-200 cursor-pointer"
+              >
+                {item.name}
+              </ScrollLink>
+            ) : (
+              <Link to={item.to} className="text-gray-200">
+                {item.name}
+              </Link>
+            )}
             {hoveredItem === index && (
               <motion.span
                 className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400"
@@ -88,7 +100,7 @@ const {role} = useSelector((state)=> state.auth)
         )}
       </nav>
     </motion.header>
-  )
-}
+  );
+};
 
 export default Header;
