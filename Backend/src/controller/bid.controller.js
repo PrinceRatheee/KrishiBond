@@ -4,8 +4,6 @@ import CompanyDemand from "../models/companyDemand.model.js";
 
 const createBidForFarmer = async (req, res) => {
   try {
-
-   
     const { demandId } = req.params;
     const { user, appliedRate, quantity, duration } = req.body;
     const farmer = await User.findById(user);
@@ -46,8 +44,6 @@ const getBidsByDemandId = async (req, res) => {
   }
 };
 
-
-
 const getBidsByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -57,4 +53,20 @@ const getBidsByUserId = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-export { createBidForFarmer, getBidsByDemandId, getBidsByUserId };
+const updateBidsByUser = async (req, res) => {
+  try {
+    console.log("here");
+    const { bidID: id } = req.params;
+    const bids = await Bid.findByIdAndUpdate(id, { status: "cancelled" });
+    bids.save();
+    res.status(200).json(bids);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+export {
+  createBidForFarmer,
+  getBidsByDemandId,
+  getBidsByUserId,
+  updateBidsByUser,
+};

@@ -117,7 +117,7 @@ const Checkout = () => {
           {demand.crop}
         </h2>
         <p className="text-gray-300 text-center mb-6">
-          Demand by:{" "}{company?.company.name} <span className="font-semibold">{}</span>
+          Demand by:{" "}{company?.company?.name} <span className="font-semibold">{}</span>
         </p>
         <div className="text-gray-300 mb-8 space-y-2">
           <p>
