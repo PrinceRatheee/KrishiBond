@@ -4,7 +4,7 @@ const CancelBid = () => {
   const [bidId, setBidId] = useState('');
   const [reason, setReason] = useState('');
   const [submitted, setSubmitted] = useState(false);
-
+const [cancel,setcancel]= useState("self-choice")
   const handleCancelSubmit = (e) => {
     e.preventDefault();
 
@@ -39,18 +39,19 @@ const CancelBid = () => {
           </h1>
 
           <div className="mb-4">
-            <label htmlFor="bidId" className="block text-sm font-medium text-gray-700">
-              Bid ID
-            </label>
-            <input
-              type="text"
-              id="bidId"
-              value={bidId}
-              onChange={(e) => setBidId(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter your bid ID"
-              required
-            />
+          <label className="block text-black text-sm mb-2" htmlFor="role">
+                Select Reason
+              </label>
+              <select
+                id="role"
+                className="w-full px-4 py-3 bg-gray-100 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+               value={cancel}
+               onChange={(e)=> setcancel(e.target.value)}
+                
+              >
+                <option value="selfchoice">Self choice</option>
+                <option value="Climate">Climate Condition</option>
+              </select>
           </div>
 
           <div className="mb-6">
