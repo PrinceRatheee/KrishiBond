@@ -89,9 +89,12 @@ const DemandDetails = () => {
     );
     await transaction.wait();
     // alert("Transaction is successul");
-
-
-
+    const response = await axiosinstance.post(`/api/farmerBid/approveBidsByCompany/${bidId}`);
+       if(response.status === 200){
+          console.log("Bid Accepted");
+        }else{
+          console.log("Error accepting bid");
+        }
     window.location.reload();
     
   };
