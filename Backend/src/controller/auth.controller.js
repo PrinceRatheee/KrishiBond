@@ -98,14 +98,15 @@ const companyDetails=async(req,res)=>{
     }
 }
 const getCompanydetails=async(req,res)=>{
-    const {companyid}=req.params();
-    const company=await Company.findById(companyid); 
+    const {id}=req.params;
+
+    const company=await Company.findById(id); 
     return res.status(200).json({company});
 }
 
 const getFarmerdetails=async(req,res)=>{
-    const {farmerid}=req.params();
-    const farmer=await Farmer.findById(farmerid); 
+    const {id}=req.params;
+    const farmer=await Farmer.findById(id); 
     return res.status(200).json({farmer});
 }   
 

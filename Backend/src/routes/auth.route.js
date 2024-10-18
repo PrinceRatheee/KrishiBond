@@ -8,7 +8,7 @@ authRouter.post("/user/login",login );
 
 authRouter.post("/user/login/farmerdetails", farmerDetails);
 authRouter.post("/user/login/companydetails", companyDetails);
-authRouter.post("/user/getCompanydetails", getCompanydetails);
-authRouter.post("/user/getFarmerdetails", getFarmerdetails);
+authRouter.get("/user/getCompanydetails/:id", getCompanydetails);
+authRouter.get("/user/getFarmerdetails/:id", getFarmerdetails);
 
 export default authRouter;
