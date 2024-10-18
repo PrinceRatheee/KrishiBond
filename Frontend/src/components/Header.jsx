@@ -5,32 +5,33 @@ import { logout } from "../Redux/Auth/AuthSlice";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Leaf } from 'lucide-react';
+import { Link as ScrollLink } from 'react-scroll'; // Renaming to avoid conflicts
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [hoveredItem, setHoveredItem] = useState(null);
-const {role} = useSelector((state)=> state.auth)
-  const handleLogin = () => {
-    navigate('/auth')
-  }
+  const { role } = useSelector((state) => state.auth);
 
-  
+  const handleLogin = () => {
+    navigate('/auth');
+  };
 
   const handleLogout = () => {
-    console.log('logout hit')
-    dispatch(logout())
-  }
+    console.log('logout hit');
+    dispatch(logout());
+  };
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+  // Navigation items configuration
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
+    { name: 'Home', href: '/', type: 'link' },
+    { name: 'About', href: '/about', type: 'link' },
     role === 'industry'
-    ? { name: 'Create Demands', href: '/demands' }
-    : { name: 'Marketplace', href: '/get' },
-    { name: 'Contact', href: '/contact' },
+      ? { name: 'Create Demands', href: '/demands', type: 'link' }
+      : { name: 'Marketplace', href: '/get', type: 'link' },
+    { name: 'Contact', href: 'contact', type: 'scroll' }, // Scroll to "Contact"
   ];
 
   return (
@@ -50,7 +51,7 @@ const {role} = useSelector((state)=> state.auth)
           Krishi Bond
         </h1>
       </motion.div>
-      <nav className="    flex items-center space-x-4">
+      <nav className="flex items-center space-x-4">
         {navItems.map((item, index) => (
           <motion.div
             key={item.name}
@@ -59,17 +60,17 @@ const {role} = useSelector((state)=> state.auth)
             onHoverEnd={() => setHoveredItem(null)}
           >
             {item.type === 'scroll' ? (
-              <ScrollLink 
-                to={item.to} 
-                smooth={true} 
-                duration={500} 
+              <ScrollLink
+                to={item.href}
+                smooth={true}
+                duration={500}
                 offset={-70} // Adjust for header height
                 className="text-gray-200 cursor-pointer"
               >
                 {item.name}
               </ScrollLink>
             ) : (
-              <Link to={item.to} className="text-gray-200">
+              <Link to={item.href} className="text-gray-200">
                 {item.name}
               </Link>
             )}
