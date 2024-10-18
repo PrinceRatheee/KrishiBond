@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
-import { useDispatch } from 'react-redux';
+import { useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom"; // Import Link from react-router-dom
+import { useDispatch } from "react-redux";
 import { logout } from "../Redux/Auth/AuthSlice";
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { Leaf } from 'lucide-react';
-import { Link as ScrollLink } from 'react-scroll'; // Renaming to avoid conflicts
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Leaf } from "lucide-react";
+import { Link as ScrollLink } from "react-scroll"; // Renaming to avoid conflicts
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,11 +14,11 @@ const Header = () => {
   const { role } = useSelector((state) => state.auth);
 
   const handleLogin = () => {
-    navigate('/auth');
+    navigate("/auth");
   };
 
   const handleLogout = () => {
-    console.log('logout hit');
+    console.log("logout hit");
     dispatch(logout());
   };
 
@@ -26,22 +26,22 @@ const Header = () => {
 
   // Navigation items configuration
   const navItems = [
-    { name: 'Home', href: '/', type: 'link' },
-    { name: 'About', href: '/about', type: 'link' },
-    role === 'industry'
-      ? { name: 'Create Demands', href: '/demands', type: 'link' }
-      : { name: 'Marketplace', href: '/get', type: 'link' },
-    { name: 'Contact', href: 'contact', type: 'scroll' }, // Scroll to "Contact"
+    { name: "Home", href: "/", type: "link" },
+    { name: "About", href: "/about", type: "link" },
+    role === "industry"
+      ? { name: "Create Demands", href: "/create", type: "link" }
+      : { name: "Marketplace", href: "/get", type: "link" },
+    { name: "Contact", href: "contact", type: "scroll" }, // Scroll to "Contact"
   ];
 
   return (
-    <motion.header 
+    <motion.header
       className="py-3 px-6 flex justify-between items-center bg-gradient-to-r from-gray-900 via-blue-900 to-black text-gray-200 shadow-md"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <motion.div 
+      <motion.div
         className="flex items-center space-x-2"
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
@@ -59,7 +59,7 @@ const Header = () => {
             onHoverStart={() => setHoveredItem(index)}
             onHoverEnd={() => setHoveredItem(null)}
           >
-            {item.type === 'scroll' ? (
+            {item.type === "scroll" ? (
               <ScrollLink
                 to={item.href}
                 smooth={true}
