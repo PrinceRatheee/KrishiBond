@@ -98,13 +98,10 @@ const companyDetails = async (req, res) => {
     return res.status(500).json({ message: "Something went wrong", error });
   }
 };
-
 const getCompanydetails = async (req, res) => {
   const { id } = req.params;
 
-  console.log(id);
-
-  const company = await Company.findById(id);
+  const company = await User.findById(id);
   return res.status(200).json({ company });
 };
 

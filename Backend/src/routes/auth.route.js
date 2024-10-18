@@ -14,8 +14,6 @@ authRouter.post("/user/login", login);
 
 authRouter.post("/user/login/farmerdetails", farmerDetails);
 authRouter.post("/user/login/companydetails", companyDetails);
-
-
 authRouter.get("/user/getCompanydetails/:id", getCompanydetails);
 authRouter.get("/user/getFarmerdetails/:id", getFarmerdetails);
 

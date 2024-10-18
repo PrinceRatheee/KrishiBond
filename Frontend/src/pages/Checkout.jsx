@@ -1,19 +1,17 @@
-import  { useEffect, useState } from "react";
-import { useLocation ,useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import axiosinstance from "../Helper/axiosinstance";
 import { useSelector } from "react-redux";
 
-
-
 const Checkout = () => {
   const location = useLocation();
-  const { demand } = location.state; 
-  console.log(demand)// Extract demand details from state
+  const { demand } = location.state;
+  console.log("demand", demand); // Extract demand details from state
   const userId = useSelector((state) => state.auth.data.id); // Get user ID from Redux
-  const {id} = useParams();
+  const [id, setid] = useState(demand?.companyID);
 
   const [company, setcompany] = useState("");
-
+  console.log(id);
   console.log("id", userId);
   //   console.log('user',userId);
   const [bids, setBids] = useState([]); // Store list of bids
@@ -39,11 +37,14 @@ const Checkout = () => {
       const response = await axiosinstance.get(
         `/api/farmerBid/getBidsByDemandId/${demand._id}`
       );
-      setBids(response.data);
-      const companydetail = await axiosinstance.get(`/api/auth/user/getCompanydetails/${id}`);
-console.log(companydetail);
-setcompany(companydetail.payload);
       console.log("resp data", response.data);
+      setBids(response.data);
+
+      // Set companyID if it exists
+      // const companyID = response?.data[0]?.appliedFor[0]?.companyID;
+      // if (companyID) {
+      //   setid(companyID); // Set companyID in state
+      // }
       // Check if the user already made a bid
       const userBid = response.data.find((bid) => bid.user === userId);
       if (userBid) setIsBidMade(true);
@@ -79,10 +80,28 @@ setcompany(companydetail.payload);
     }
   };
 
+  const fetchCompanyDetails = async (companyId) => {
+    try {
+      const details = await axiosinstance.get(
+        `/api/auth/user/getCompanydetails/${companyId}`
+      );
+      console.log("Company details: ", details.data);
+      setcompany(details.data); // Store company details in state
+    } catch (error) {
+      console.error("Error fetching company details:", error);
+    }
+  };
+
   // Fetch bids on component mount
   useEffect(() => {
     fetchBids();
   }, []);
+
+  useEffect(() => {
+    if (id) {
+      fetchCompanyDetails(id); // Call only when id is set
+    }
+  }, [id]);
 
   return (
     <div className="bg-gradient-to-r from-gray-900 via-black to-blue-900 min-h-screen text-white py-12">
@@ -98,11 +117,7 @@ setcompany(companydetail.payload);
           {demand.crop}
         </h2>
         <p className="text-gray-300 text-center mb-6">
-          Demand by:{" "}
-          <span className="font-semibold">
-            {}
-          </span>
-          
+          Demand by:{" "}{company?.company.name} <span className="font-semibold">{}</span>
         </p>
         <div className="text-gray-300 mb-8 space-y-2">
           <p>
